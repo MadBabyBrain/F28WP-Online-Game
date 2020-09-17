@@ -1,15 +1,3 @@
 body{
   background-color: grey;
 }
-
-#display{
-
-
-  border: 5px solid black;
-  background-color: white;
-
-  position: absolute;
-  top: 4em;
-  left: 20em;
-
-}

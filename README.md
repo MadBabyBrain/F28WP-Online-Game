@@ -12,10 +12,10 @@
 - `Joi` *NEW*
 
 # How To Access/View "Server"
-download and install `node.js`
-open `node console`
-change the directory to be within the folder that contains `index.js`
-run `index.js` with command `node index.js`
+- download and install `node.js`
+- open `node console`
+- change the directory to be within the folder that contains `index.js`
+- run `index.js` with command `node index.js`
 
 # URLs:
 - `localhost:3000`

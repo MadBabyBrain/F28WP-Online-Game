@@ -2,7 +2,6 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="../CSS/Home-Page-CSS.css">
-<script src="../JavaScript/Home-Page-JS.js"></script>
 </head>
 <body>
 
@@ -10,46 +9,26 @@
 
 <p>My first paragraph.</p>
 
-
-    <p>TABLE_DATA</p>
-
-<table>
-
-    <tr>
-        <td>a</td>
-        <td>b</td>
-        <td>c</td>
-    </tr>
-    <tr>
-        <td>d</td>
-        <td>e</td>
-        <td>f</td>
-    </tr>
-
+<!--Added by Jakub-->
+<table id="data">
+    <th>Name</th>
+    <th>Score</th>
 </table>
 
-    <!-- Added by Jakub -->
+<button id="tableGenButton" onclick="genTable()">Generate Score</button>
+<button id="tableUpdateButton" onclick="updateTable()">Update Table</button>
 
-<table>
-    <tr>
-        <td>
-            Anthony
-        </td>
+<div id="dataForm">
+    <label for="name">name:</label>
+    <input type="text" id="name"><br>
+    <label for="score">score:</label>
+    <input type="text" id="score"><br><br>
+    <button onclick="sendData()">send</button>
+</div>
 
-        <td>
-            Ian
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            Smosh
-        </td>
-    </tr>
-</table>
-
-
+<!--Added by Jakub-->
 <p>play fortnite >>>>>>>><a href="Game.html">here</a><<<<<<<</p>
 
+<script src="../JavaScript/Home-Page-JS.js"></script>
 </body>
 </html>

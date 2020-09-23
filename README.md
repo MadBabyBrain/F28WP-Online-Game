@@ -6,6 +6,7 @@
 - `Nodemon` to make restarting server/node console easier
 - Added test/sample data - _need to connect with `MongoDB`_
 - API folder contains `Joi` (node package/module) for HTML request validation *NEW*
+- Added new routes for front-end *NEW*
 
 # API
 - `express`
@@ -18,7 +19,17 @@
 - run `index.js` with command `node index.js`
 
 # URLs:
-- `localhost:3000`
+- `localhost:3000` _UPDATED_
+  - Node sends the client the `Home.html` file  _UPDATED_
+  - displays `Hello World!` _REMOVED_
+- `localhost:3000/Game.html` _NEW_
+  - Node sends the client the `Game.html` file
+- `localhost:3000/CSS/:css` _NEW_
+  - _`:css`_ is a parameter of the css file
+  - this route is directs the browser to the required css files
+- `localhost:3000/JavaScript/:js` _NEW_
+  - _`:js`_ is a parameter of the javascript file
+  - this route directs the browser to the required javascript files
 - `localhost:3000/api/scores`
 - `localhost:3000/api/scores/:id`
   - _`:id`_ is a parameter. The test object only contains 3 entries/elements. Only 0, 1 and 2 work

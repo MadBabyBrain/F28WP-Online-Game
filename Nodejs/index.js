@@ -1,6 +1,9 @@
 const Joi = require("./API/node_modules/joi");
 const express = require("./API/node_modules/express");
+const fs = require("fs");
+const path = require("path");
 const app = express();
+
 
 // enable JSON parsing - not enable in express by default
 app.use(express.json());
@@ -8,11 +11,35 @@ app.use(express.json());
 //  PORT
 const port = process.env.PORT || 3000;
 
-//  routes
+// Dir
+const { dir } = path.parse(__dirname);
+
+//  routes -- move to another file
 //
 //  root URL
-app.get('/', (req, res) => { 
-    res.send("Hello world!");
+app.get('/', (req, res) => {
+    //res.send("Hello World!");
+    res.sendFile("/HTML/Home.html", {root: dir});
+});
+
+// game.html
+app.get('/Game.html', (req, res) => {
+    //res.send("Hello World!");
+    res.sendFile("/HTML/Game.html", {root: dir});
+});
+
+// css
+app.get('/CSS/:css', (req, res) => {
+    //res.send(req.params.css);
+    let css = req.params.css;
+    res.sendFile(`/CSS/${css}`, {root: dir});
+});
+
+// javascript
+app.get('/JavaScript/:js', (req, res) => {
+    //res.send(req.params.css);
+    let js = req.params.js;
+    res.sendFile(`/JavaScript/${js}`, {root: dir});
 });
 
 // test array of objects

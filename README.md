@@ -7,6 +7,7 @@
 - Added test/sample data - _need to connect with `MongoDB`_
 - API folder contains `Joi` (node package/module) for HTML request validation *NEW*
 - Added new routes for front-end *NEW*
+- Website has interface to interact with data on the server *NEW*
 
 # API
 - `express`
@@ -48,6 +49,9 @@ Added functionality to `PUT`, `POST` and `DELETE` HTML requests
 - `PUT`_ manipulates_ the data
 - `POST` _adds_ new data
 - `DELETE` _deletes_ data
+
+Implemented a UI to interact with the server from the website _NEW_
+- Only supports `GET` and `POST` _NEW_
 
 Some data validation is in place when handling the requests. Using `Joi` a schema has been implemented.
 Schema rules :

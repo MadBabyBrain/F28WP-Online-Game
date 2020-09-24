@@ -22,7 +22,6 @@ var gameArea = {
 
 // ----------------------------------------------------------------Added by Jakub
 // Get JSON Object from NodeJS Server and populate table
-document.getElementById("tableUpdateButton").style.display = "none";
 
 const dataTable = document.getElementById("data");
 const myUrl = window.location.href;
@@ -60,9 +59,6 @@ function genTable() {
                 name.innerHTML = `${jdata[i].name}`;
                 score.innerHTML = `${jdata[i].score}`;
             }
-
-            document.getElementById("tableGenButton").remove();
-            document.getElementById("tableUpdateButton").style.display = "block";
         }
     });
 }
@@ -111,7 +107,24 @@ function sendData() {
 
     children[1].value = "";
     children[4].value = "";
+    
+    updateTable();
 }
 
+function toggleTable()
+{
+    var x = document.getElementById("data")
+
+    if (x.style.display === "none")
+    {
+        x.style.display = "block";
+    }
+    else
+    {
+        x.style.display = "none";
+    }
+
+    updateTable();
+}
 //console.log(document.getElementById("dataForm").children[1].value);
 //=======================================================================================================

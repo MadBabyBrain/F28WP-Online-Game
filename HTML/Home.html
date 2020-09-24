@@ -3,20 +3,20 @@
 <head>
 <link rel="stylesheet" type="text/css" href="../CSS/Home-Page-CSS.css">
 </head>
-<body>
+<body onload="genTable()">
 
 <h1 id="a">My First Heading</h1>
 
 <p>My first paragraph.</p>
 
+<button id="tableToggle" onclick="toggleTable()">Toggle Table</button>
+
 <!--Added by Jakub-->
 <table id="data">
-    <th>Name</th>
-    <th>Score</th>
+    <th width="100px" height="50px">Name</th>
+    <th width="100px" height="50px">Score</th>
 </table>
 
-<button id="tableGenButton" onclick="genTable()">Generate Score</button>
-<button id="tableUpdateButton" onclick="updateTable()">Update Table</button>
 
 <div id="dataForm">
     <label for="name">name:</label>

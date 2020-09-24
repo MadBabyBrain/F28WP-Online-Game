@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../CSS/Home-Page-CSS.css">
+<link rel="shortcut icon" href="../favicon/favicon.ico" />
+</head>
+<body onload="genTable()">
+
+  <div class="header">
+    My First Header
+  </div>
+
+<p>My first paragraph.</p>
+
+<button id="tableToggle" onclick="toggleTable()">Toggle Table</button>
+
+<table id="data">
+    <th width="100px" height="50px">Name</th>
+    <th width="100px" height="50px">Score</th>
+</table>
+
+<form id="dataForm" onsubmit="event.preventDefault()">
+  <div>
+    <label for="name">name:</label>
+    <input type="text" id="name-input">
+  </div>
+  <div>
+    <label for="score">score:</label>
+    <input type="text" id="score-input">
+  </div>
+  <div>
+    <button onclick="sendData()">send</button>
+  </div>
+</form>
+
+<p>play fortnite >>>>>>>><a href="Game.html">here</a><<<<<<<</p>
+
+<script src="socket.io.js"></script>
+<script src="../JavaScript/Home-Page-JS.js"></script>
+
+</body>
+</html>

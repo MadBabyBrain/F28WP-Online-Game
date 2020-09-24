@@ -1,0 +1,75 @@
+body {
+    background-color: #B7FDFE;
+    margin: 0px;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+}
+.header {
+    width: 100%;
+    padding: 20px;
+    color: #B7FDFE;
+    background-color: #00189a;
+    text-align: center;
+    font-size: 40px;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+#data {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+#data td, #data th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#data td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+  max-width: 28ch;
+}
+
+#data tr:nth-child(even){background-color: #f2f2f2;}
+#data tr:nth-child(odd){background-color: #fff;}
+
+#data tr:hover {background-color: #ddd;}
+
+#data tr {text-align: center;}
+
+#data th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: ivory;
+}
+
+
+/* canvas {
+    border: 1px solid #000000;
+    background-color: #000000;
+} */
+
+#dataForm {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 30%;
+}
+
+#dataForm div {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+
+#dataForm :last-child {
+    display: flex;
+    justify-content: flex-end;
+}

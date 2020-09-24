@@ -1,0 +1,30 @@
+body{
+  background-color: blueviolet;
+}
+
+#message-app {
+  width: 1000px;
+  height: 900px;
+}
+
+#messages {
+  width: 900px;
+  height: 400px;
+  background-color: white;
+}
+
+#message-box {
+  width: 900px;
+  height: 100px;
+  padding: 0;
+
+  display: grid;
+
+  grid-template-columns: 1fr 10%;
+  grid-auto-flow: column;
+  column-gap: 4px;
+}
+
+#messenger {
+  resize: none;
+}

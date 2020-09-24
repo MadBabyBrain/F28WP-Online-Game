@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" type="text/css" href="../CSS/Game.css">
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <meta charset="utf-8">
+    <title>Jakubs a whore</title>
+  </head>
+  <body>
+    <h1>Message Test</h1>
+
+    <div id="message-app" class="message">
+      <div id="messages" style="overflow: auto;">
+      </div>
+      <div id="message-box">
+        <textarea id="messenger" maxlength="300"></textarea>
+        <button id="submit" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <script src="../JavaScript/Game.js"></script>
+    <script src="socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      var socket = io()
+
+      // move script to external file
+      // only applies to this html file
+
+      function sendMessage() {
+        //console.log('cunt')
+
+        const msg = document.getElementById("messenger").value;
+
+        // $(#id)
+        // document.getElementById("id")
+
+        socket.emit('chat message', msg);
+        document.getElementById('messages').style.maxHeight = '500px';
+
+        document.getElementById("messenger").value = "";
+      }
+
+      socket.on('hi', (msg) => {
+          const li = document.createElement('li');
+          li.innerText = `${msg}`
+          const messageEl = document.getElementById("messages");
+          messageEl.append(li);
+          messageEl.scrollTo(0, messageEl.scrollHeight);
+        });
+    </script>
+  </body>
+
+</html>

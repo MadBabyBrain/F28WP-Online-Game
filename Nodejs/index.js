@@ -1,9 +1,11 @@
-const Joi = require("./API/node_modules/joi");
-const express = require("./API/node_modules/express");
+const Joi = require("joi");
+const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const app = express();
 
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
 
 // enable JSON parsing - not enable in express by default
 app.use(express.json());
@@ -17,16 +19,36 @@ const { dir } = path.parse(__dirname);
 //  routes -- move to another file
 //
 //  root URL
+
+app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '/node_modules/socket.io-client/dist/')));
+
 app.get('/', (req, res) => {
     //res.send("Hello World!");
-    res.sendFile("/HTML/Home.html", {root: dir});
+    res.sendFile("public/HTML/Home.html", {root: __dirname});
 });
 
 // game.html
 app.get('/Game.html', (req, res) => {
     //res.send("Hello World!");
-    res.sendFile("/HTML/Game.html", {root: dir});
+    res.sendFile("public/HTML/Game.html", {root: __dirname});
 });
+
+// connect signal
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    socket.on('chat message', (msg) => {
+        console.log('message: ' + msg);
+        io.emit('hi', msg);
+      });
+
+    // disconnect signal
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+      });
+});
+
 
 // css
 //replaced with express.static
@@ -36,7 +58,6 @@ app.get('/Game.html', (req, res) => {
     res.sendFile(`/CSS/${css}`, {root: dir});
 }); */
 
-app.use("/CSS", express.static(path.join(dir, 'CSS')));
 console.log(__dirname);
 // javascript
 //replaced with express.static
@@ -46,8 +67,8 @@ console.log(__dirname);
     res.sendFile(`/JavaScript/${js}`, {root: dir});
 }); */
 
-app.use("/JavaScript", express.static(path.join(dir, 'JavaScript')));
-app.use("/favicon", express.static(path.join(dir, 'favicon')));
+app.use("/JavaScript", express.static(path.join(__dirname, 'JavaScript')));
+app.use("/favicon", express.static(path.join(__dirname, 'favicon')));
 
 // test array of objects
 const scores = [
@@ -72,6 +93,7 @@ app.get('/api/scores/:id', (req, res) => {
 
 // reponding to post from HTML
 app.post('/api/scores', (req, res) => {
+    console.log('scores')
     // validate
     //const result = validateScore(req.body);
     const { error } = validateScore(req.body); // object destructuring - result.error
@@ -112,6 +134,7 @@ app.post('/api/scores', (req, res) => {
     };
 
     scores.push(score);
+    io.emit("update table", scores);
     res.send(score);
 });
 
@@ -173,4 +196,4 @@ app.delete('/api/scores/:id', (req, res) => {
     res.send(score); 
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+http.listen(port, () => console.log(`Listening on port ${port}...`));

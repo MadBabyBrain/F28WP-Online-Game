@@ -47,6 +47,7 @@ console.log(__dirname);
 }); */
 
 app.use("/JavaScript", express.static(path.join(dir, 'JavaScript')));
+app.use("/favicon", express.static(path.join(dir, 'favicon')));
 
 // test array of objects
 const scores = [

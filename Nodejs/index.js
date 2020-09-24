@@ -29,18 +29,24 @@ app.get('/Game.html', (req, res) => {
 });
 
 // css
-app.get('/CSS/:css', (req, res) => {
+//replaced with express.static
+/* app.get('/CSS/:css', (req, res) => {
     //res.send(req.params.css);
     let css = req.params.css;
     res.sendFile(`/CSS/${css}`, {root: dir});
-});
+}); */
 
+app.use("/CSS", express.static(path.join(dir, 'CSS')));
+console.log(__dirname);
 // javascript
-app.get('/JavaScript/:js', (req, res) => {
+//replaced with express.static
+/* app.get('/JavaScript/:js', (req, res) => {
     //res.send(req.params.css);
     let js = req.params.js;
     res.sendFile(`/JavaScript/${js}`, {root: dir});
-});
+}); */
+
+app.use("/JavaScript", express.static(path.join(dir, 'JavaScript')));
 
 // test array of objects
 const scores = [

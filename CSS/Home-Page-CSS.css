@@ -1,11 +1,15 @@
 body {
     background-color: #B7FDFE;
+    margin: 0px;
 }
-#a {
-    color: #2B9720;
+.header {
+    padding: 20px;
+    color: #B7FDFE;
+    background-color: #00189a;
     text-align: center;
+    font-size: 40px;
     text-shadow:
-    -1px -1px 0 #000,  
+    -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
@@ -15,15 +19,15 @@ body {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
 }
-  
+
 #data td, #data th {
     border: 1px solid #ddd;
     padding: 8px;
 }
-  
+
 #data tr:nth-child(even){background-color: #f2f2f2;}
 #data tr:nth-child(odd){background-color: #fff;}
-  
+
 #data tr:hover {background-color: #ddd;}
 
 #data tr {text-align: center;}

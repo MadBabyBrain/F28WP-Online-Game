@@ -46,7 +46,7 @@
   
 # HTML Requests *NEW*
 Added functionality to `PUT`, `POST` and `DELETE` HTML requests
-- `PUT`_ manipulates_ the data
+- `PUT`_manipulates_ the data
 - `POST` _adds_ new data
 - `DELETE` _deletes_ data
 

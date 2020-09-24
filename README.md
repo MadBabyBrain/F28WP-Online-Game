@@ -8,6 +8,7 @@
 - API folder contains `Joi` (node package/module) for HTML request validation *NEW*
 - Added new routes for front-end *NEW*
 - Website has interface to interact with data on the server *NEW*
+- `Express` now handles `CSS` and `JavaScript` files as _static_ files *NEW*
 
 # API
 - `express`
@@ -27,9 +28,11 @@
   - Node sends the client the `Game.html` file
 - `localhost:3000/CSS/:css` _NEW_
   - _`:css`_ is a parameter of the css file
+  - `express` now handles this as a static file _NEW_
   - this route is directs the browser to the required css files
 - `localhost:3000/JavaScript/:js` _NEW_
   - _`:js`_ is a parameter of the javascript file
+  - `express` now handles this as a static file _NEW_
   - this route directs the browser to the required javascript files
 - `localhost:3000/api/scores`
 - `localhost:3000/api/scores/:id`

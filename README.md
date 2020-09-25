@@ -1,4 +1,6 @@
 # F28WP-Online-Game
+# REMOVE ALL README.md CONTENTS. WILL RE-ADD LATER
+
 
 # Summary of changes
 - Added example backend (`Node.js`)

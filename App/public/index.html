@@ -1,7 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <body>
-        <h6>Test Git merge on same file</h6>
-        <p>Added by Jakub</p>
-    </body>
+<head> 
+
+</head>
+
+<body>
+
+  <div class="header">
+    My First Header
+  </div>
+
+<p>My first paragraph.</p>
+
+
+<table id="data">
+    <th width="100px" height="50px">Name</th>
+    <th width="100px" height="50px">Score</th>
+</table>
+
+<form id="dataForm" onsubmit="event.preventDefault()">
+  <div>
+    <label for="name">name:</label>
+    <input type="text" id="name-input">
+  </div>
+  <div>
+    <label for="score">score:</label>
+    <input type="text" id="score-input">
+  </div>
+  <div>
+    <button onclick="sendData()">send</button>
+  </div>
+</form>
+
+
+
+</body>
 </html>

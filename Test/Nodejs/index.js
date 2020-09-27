@@ -3,34 +3,33 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const app = express();
-
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
+
+const { MongoClient } = require("mongodb");
+const uri = "mongodb://localhost:27017";
+const client = MongoClient(uri, { useUnifiedTopology: true });
+
+const dbName = "Online-game-test";
+const colName = "Users";
 
 // enable JSON parsing - not enable in express by default
 app.use(express.json());
 
 //  PORT
 const port = process.env.PORT || 3000;
-
-// Dir
-const { dir } = path.parse(__dirname);
-
 //  routes -- move to another file
 //
 //  root URL
-
 app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, '/node_modules/socket.io-client/dist/')));
 
 app.get('/', (req, res) => {
-    //res.send("Hello World!");
     res.sendFile("public/HTML/Home.html", {root: __dirname});
 });
 
 // game.html
 app.get('/Game.html', (req, res) => {
-    //res.send("Hello World!");
     res.sendFile("public/HTML/Game.html", {root: __dirname});
 });
 
@@ -49,46 +48,46 @@ io.on('connection', (socket) => {
       });
 });
 
-
-// css
-//replaced with express.static
-/* app.get('/CSS/:css', (req, res) => {
-    //res.send(req.params.css);
-    let css = req.params.css;
-    res.sendFile(`/CSS/${css}`, {root: dir});
-}); */
-
-console.log(__dirname);
-// javascript
-//replaced with express.static
-/* app.get('/JavaScript/:js', (req, res) => {
-    //res.send(req.params.css);
-    let js = req.params.js;
-    res.sendFile(`/JavaScript/${js}`, {root: dir});
-}); */
-
 app.use("/JavaScript", express.static(path.join(__dirname, 'JavaScript')));
 app.use("/favicon", express.static(path.join(__dirname, 'favicon')));
 
-// test array of objects
-const scores = [
-    {"id":0, "name":"user1", "score":1},
-    {"id":1, "name":"user2", "score":2},
-    {"id":2, "name":"user3", "score":3}
-];
-
 app.get('/api/scores', (req, res) => {
-    res.send(scores);
+    client.connect();
+    const database = client.db(dbName);
+    const collection = database.collection(colName);
+
+    collection.find({}).toArray((err, result) => {
+        if(err) throw err;
+        res.send(result);
+    });
+
+    client.close();
 });
 
 // /api/scores/1
 app.get('/api/scores/:id', (req, res) => {
-    let id = parseInt(req.params.id);
-    const score = scores.find(c => c.id === id);
+    client.connect();
+    const database = client.db(dbName);
+    const collection = database.collection(colName);
+
+    let pId = parseInt(req.params.id); // add validation
+    //const score = scores.find(c => c.id === id);
+    const query = { id: pId };
+      
+      collection.findOne(query, (err, score) => {
+          if (err) throw err;
+          res.send(score)
+        });
+
+       // Adventure.findOne({ country: 'Croatia' }, function (err, adventure) {});
     // 404
-    if(!score) return res.status(404).send("The score with the given ID was not found");
-    //else
-    res.send(score);
+/*     if((cursor.count()) == 0) {
+        res.status(404).send("The score with the given ID was not found");
+    } else {
+        cursor.rewind();
+        cursor.each(score => res.send(score));
+    } */
+    client.close();
 });
 
 // reponding to post from HTML
@@ -98,34 +97,11 @@ app.post('/api/scores', (req, res) => {
     //const result = validateScore(req.body);
     const { error } = validateScore(req.body); // object destructuring - result.error
 
-    // ! Replaced by Joi module for efficeint post validation !
-    // look up how to validate post data more efficiently
-    // if(!req.body.name || req.body.name.length < 3) {
-    //     // 400 - bad request
-    //     res.status(400).send("Name is required - minimum 3 characters");
-    //     return;
-    // }
-
-    // if(!req.body.score) {
-    //     // 400 - bad request
-    //     res.status(400).send("Score is required");
-    //     return;
-    // }
-
     if(error) {
         // 400 - bad request
         // res.status(400).send(result.error);
         return res.status(400).send(error.details[0].message); //easier for client to read
     }
-
-/* 
-    try {
-        const result = schema.validate(req.body);
-        console.log(result);
-    } catch (err) {
-        // 400 - bad request
-        res.status(400).send(err);
-    } */
 
     const score = { // maunually added data. Future revisions will let MongoDB populate object
         "id": scores.length +1,

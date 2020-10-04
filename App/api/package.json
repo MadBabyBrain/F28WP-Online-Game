@@ -1,0 +1,29 @@
+{
+  "name": "online-game",
+  "version": "1.0.0",
+  "description": "A Node.js RESTful API online game project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MadBabyBrain/F28WP-Online-Game.git"
+  },
+  "keywords": [
+    "node",
+    "restful",
+    "api",
+    "game"
+  ],
+  "author": "Jakub Dymarkowski, David Capper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MadBabyBrain/F28WP-Online-Game/issues"
+  },
+  "homepage": "https://github.com/MadBabyBrain/F28WP-Online-Game#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

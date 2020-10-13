@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const bodyparser = require('body-parser');
 
 const userRoutes = require('./routes/user/users');
 const loginRoute = require('./routes/user/account/login');
 const signupRoute = require('./routes/user/account/signup');
 const scoreRoute = require('./routes/score/scoreboard');
 
-app.user(morgan('dev'));
+app.use(morgan('dev'));
+app.user(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.json());
 
 app.use('/users', userRoutes);
 app.use('/users/account/login', loginRoute);

@@ -1,6 +1,6 @@
 # F28WP-Online-Game
 # Recent changes
-- Added a basic game start page under App folder
+- Added a basic game start page under Test/nodeJs folder
 
 
 # REMOVE ALL README.md CONTENTS. WILL RE-ADD LATER

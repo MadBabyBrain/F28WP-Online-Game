@@ -1,6 +1,9 @@
 # F28WP-Online-Game
-# REMOVE ALL README.md CONTENTS. WILL RE-ADD LATER
+# Recent changes
+- Added a basic game start page under Test/nodeJs folder
 
+
+# REMOVE ALL README.md CONTENTS. WILL RE-ADD LATER
 
 # Summary of changes
 - Added example backend (`Node.js`)

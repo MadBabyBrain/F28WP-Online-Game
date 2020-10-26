@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/MadBabyBrain/F28WP-Online-Game#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
   }
 }

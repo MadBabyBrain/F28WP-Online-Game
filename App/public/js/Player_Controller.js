@@ -1,6 +1,12 @@
 var player = document.getElementById("player");
+var positionX = 800
+var positionY = 400
 const movementSpeed = 10
 var pressedKeys = {}
+
+//set initial player position
+player.style.left = positionX + "px"
+player.style.top = positionY + "px"
 
 
 /*
@@ -39,19 +45,19 @@ the movement speed. Convert this back to px and set the new x or y position.
 function movePlayer(key){
   switch(key){
     case 65:
-      positionX = parseInt(player.style.left,10) + (1 * -movementSpeed)
+      positionX = parseInt(player.style.left,10)  - movementSpeed
       player.style.left = positionX + "px"
       break
     case 68:
-      positionX = parseInt(player.style.left,10) + (1 * movementSpeed)
+      positionX = parseInt(player.style.left,10) +  movementSpeed
       player.style.left = positionX + "px"
       break
     case 87:
-      positionY = parseInt(player.style.top,10) + (1 * -movementSpeed)
+      positionY = parseInt(player.style.top,10)  - movementSpeed
       player.style.top = positionY + "px"
       break
     case 83:
-      positionY = parseInt(player.style.top,10) + (1 * movementSpeed)
+      positionY = parseInt(player.style.top,10) +  movementSpeed
       player.style.top = positionY + "px"
       break
   }

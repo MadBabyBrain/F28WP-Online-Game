@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
+const mongoose = require('mongoose');
 
 const userRoutes = require('./routes/user/users');
 const loginRoute = require('./routes/user/account/login');
@@ -21,6 +22,31 @@ app.use('/score', scoreRoute);
 app.use('/home', homeRoute);
 app.use('/game', gameRoute);
 
+mongoose.connect(
+    'mongodb://localhost:27017/mongoose-test', // TODO : enter the correct URL 
+    {
+        useMongoClient: true,
+        useNewUrlParser: true, 
+        useUnifiedTopology: true
+    }
+);
+
+mongoose.Promise = global.Promise;
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    if (req.method === "OPTIONS") {
+      res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+      return res.status(200).json({});
+    }
+    next();
+  });
+
+// TODO : Handle Requests here
 
 app.use((req, res, next) => {
     const err = new Error("Not found :(");

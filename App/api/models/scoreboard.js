@@ -1,9 +1,8 @@
-const express = require('express');
+const mongoose = require('mongoose');
 
-exports.getAll = (req, res, next) => {
-    res
-    .status(200)
-    .json({
-        message: "GET request to /score"
-    });
-};
+const scoreSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId
+    // TODO : Add scoreboard retrieval inforomation
+});
+
+module.exports = mongoose.model('Score', scoreSchema);

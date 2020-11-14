@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 exports.userSignup = (req, res, next) => {
-  User.find({ email: req.body.email })
+  User.find({ "email": req.body.email })
     .exec()
     .then(user => {
       if (user.length >= 1) {

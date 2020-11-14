@@ -23,9 +23,8 @@ app.use('/home', homeRoute);
 app.use('/game', gameRoute);
 
 mongoose.connect(
-    'mongodb://localhost:27017/mongoose-test', // TODO : enter the correct URL 
+    'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', // TODO : enter the correct URL 
     {
-        useMongoClient: true,
         useNewUrlParser: true, 
         useUnifiedTopology: true
     }

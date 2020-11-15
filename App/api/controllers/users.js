@@ -37,12 +37,13 @@ exports.patchById = (req, res, next) => {
     });
 };
 
-exports.deleteById = (req, res, next) => {
-    const id = req.params.userId;
-    res
-    .status(200)
-    .json({
-        message: "DELETE request to /users with id param",
-        id: `${id}`
-    });
-};
+// already in deleteuser.js
+// exports.deleteById = (req, res, next) => {
+//     const id = req.params.userId;
+//     res
+//     .status(200)
+//     .json({
+//         message: "DELETE request to /users with id param",
+//         id: `${id}`
+//     });
+// };

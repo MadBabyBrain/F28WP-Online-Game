@@ -8,9 +8,9 @@ exports.user_signup = (req, res, next) => {
     .exec()
     .then(user => {
       if (user.length >= 1) {
-        return res.status(409).json(errorJson(
-            "Mail Exists", 409, "The entered e-mail is already registered"
-        ));
+        return res.status(409).json({
+            error: "Mail Exists"
+        });
       } else {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) {

@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const usersController = require('../../controllers/users');
+const SignController = require('../../controllers/signup');
+const loginController = require('../../controllers/login');
+const deleteController = require('../../controllers/deleteuser');
 
 router.get('/', usersController.getAll);
 
@@ -17,6 +20,14 @@ router.get('/:userId', usersController.getById);
 
 router.patch('/:userId', usersController.patchById);
 
-router.delete('/:userId', usersController.deleteById);
+// router.delete('/:userId', usersController.deleteById);
+
+
+
+router.post('/signup', SignController.user_signup);
+
+router.post('/login', loginController.user_login);
+
+router.delete('/:id', deleteController.user_delete);
 
 module.exports = router;

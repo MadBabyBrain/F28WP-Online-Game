@@ -16,14 +16,14 @@ exports.user_login = (req, res, next) => {
         bcrypt.compare(req.body.password, user[0].password, (err, result) => {
           if (err) {
             return res.status(401).json(errorJson(
-                "Mail Exists", 409, "The entered e-mail is already registered"
+                "Auth failed", 401, "Authentication failed"
             ));
           }
           if (result) {
             const token = jwt.sign(
               {
                 email: user[0].email,
-                userId: user[0]._id
+                userId: user[0]._id // Also add score and other datum
               },
               process.env.JWT_KEY,
               {

@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
@@ -23,7 +24,7 @@ app.use('/home', homeRoute);
 app.use('/game', gameRoute);
 
 mongoose.connect(
-    'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', // TODO : enter the correct URL 
+    process.env.DB_HOST, 
     {
         useNewUrlParser: true, 
         useUnifiedTopology: true

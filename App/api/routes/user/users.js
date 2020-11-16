@@ -22,8 +22,6 @@ router.patch('/:userId', usersController.patchById);
 
 // router.delete('/:userId', usersController.deleteById);
 
-
-
 router.post('/signup', SignController.user_signup);
 
 router.post('/login', loginController.user_login);

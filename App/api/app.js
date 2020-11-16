@@ -1,5 +1,4 @@
-const dotenv = require('dotenv').config();
-const resolve = require('path').resolve
+const resolve = require('path').resolve;
 
 const userRoutes = require('./routes/user/users');
 const scoreRoute = require('./routes/score/scoreboard');
@@ -8,7 +7,6 @@ const gameRoute = require('./routes/game/game');
 
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
-
 module.exports = (app) => {
 
     app.use(morgan('dev'));
@@ -42,20 +40,16 @@ module.exports = (app) => {
     app.get('/js/Player_Controller.js', (req, res, next) => {
         res.sendFile(resolve('../public/js/Player_Controller.js'));
     });
-
-
     app.use((req, res, next) => {
-        const err = new Error("Not found :(");
-        err.status = 404;
-        next(err);
-    });
-
-    app.use((err, req, res, next) => {
-        res.status(err.status || 500); // 500 - all other kinds of errors
-        res.json({
-            error: {
-                message: err.message
-            }
-        });
-    });
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header(
+          "Access-Control-Allow-Headers",
+          "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+        );
+        if (req.method === "OPTIONS") {
+          res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+          return res.status(200).json({});
+        }
+        next();
+      });
 }

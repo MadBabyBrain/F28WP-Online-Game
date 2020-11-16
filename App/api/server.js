@@ -1,11 +1,17 @@
-// node modules
-const http = require('http');
-
 // exports
-const app = require('./app');
+const express = require('express');
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
+const setuproutes = require('./app');
+const iosocket = require('./gameserver');
 
 const port = process.env.PORT || 3000;
 
-const server = http.createServer(app);
+setuproutes(app);
+iosocket(io);
 
-server.listen(port);
+http.listen(port, () => {
+    console.log(`listening on ${port}`);
+});

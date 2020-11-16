@@ -1,12 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const sbController = require('../../controllers/scoreboard');
 
-router.get('/', (req, res, next) => {
-    // res
-    // .status(200)
-    // .json({
-    //     message: "GET request to /score"
-    // });
-});
+router.get('/', sbController.getAll);
 
 module.exports = router;

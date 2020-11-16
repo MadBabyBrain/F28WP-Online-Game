@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const resolve = require('path').resolve
 
 const userRoutes = require('./routes/user/users');

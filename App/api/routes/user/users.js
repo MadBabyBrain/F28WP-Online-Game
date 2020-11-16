@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const usersController = require('../../controllers/users');
+const SignController = require('../../controllers/signup');
+const loginController = require('../../controllers/login');
+const deleteController = require('../../controllers/deleteuser');
 
-router.get('/', (req, res, next) => {
-    // res
-    // .status(200)
-    // .json({
-    //     message: "GET request to /users"
-    // });
-});
+router.get('/', usersController.getAll);
 
 // Will user endpoint need a post request ?
 // router.post('/', (req, res, next) => {
@@ -18,34 +16,18 @@ router.get('/', (req, res, next) => {
 //     });
 // });
 
-router.get('/:userId', (req, res, next) => {
-    const id = req.params.userId;
-    res
-    .status(200)
-    .json({
-        message: "GET request to /users with id param",
-        id: `${id}`
-    });
-});
+router.get('/:userId', usersController.getById);
 
-router.patch('/:userId', (req, res, next) => {
-    const id = req.params.userId;
-    res
-    .status(200)
-    .json({
-        message: "PATCH request to /users with id param",
-        id: `${id}`
-    });
-});
+router.patch('/:userId', usersController.patchById);
 
-router.delete('/:userId', (req, res, next) => {
-    const id = req.params.userId;
-    res
-    .status(200)
-    .json({
-        message: "DELETE request to /users with id param",
-        id: `${id}`
-    });
-});
+// router.delete('/:userId', usersController.deleteById);
+
+
+
+router.post('/signup', SignController.user_signup);
+
+router.post('/login', loginController.user_login);
+
+router.delete('/:id', deleteController.user_delete);
 
 module.exports = router;

@@ -21,26 +21,26 @@ module.exports = (app) => {
     app.use('/game', gameRoute);
 
     app.get('/socket.io.js', (req, res, next) => {
-        res.sendFile(resolve('./node_modules/socket.io/client-dist/socket.io.min.js'));
+        res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js'));
     });
 
     app.get('/socket.io.min.js.map', (req, res, next) => {
-        res.sendFile(resolve('./node_modules/socket.io/client-dist/socket.io.min.js.map'));
+        res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js.map'));
     });
 
     app.get('/images/player_placeholder.png', (req, res, next) => {
-        res.sendFile(resolve('../public/images/player_placeholder.png'));
+        res.sendFile(resolve('./App/public/images/player_placeholder.png'));
     });
 
     app.get('/css/player.css', (req, res, next) => {
-        res.sendFile(resolve('../public/css/player.css'));
+        res.sendFile(resolve('./App/public/css/player.css'));
     });
 
     app.get('/js/Game_Logic.js', (req, res, next) => {
-        res.sendFile(resolve('../public/js/Game_Logic.js'));
+        res.sendFile(resolve('./App/public/js/Game_Logic.js'));
     });
     app.get('/js/Player_Controller.js', (req, res, next) => {
-        res.sendFile(resolve('../public/js/Player_Controller.js'));
+        res.sendFile(resolve('./App/public/js/Player_Controller.js'));
     });
 
 

@@ -4,15 +4,20 @@ var positionY = Math.floor(Math.random() * 600 + 50)
 
 var playerObj = {
                   positionX: Math.floor(Math.random() * 800 + 50),
-                  positionY: Math.floor(Math.random() * 600 + 50)
+                  positionY: Math.floor(Math.random() * 600 + 50),
+                  image:    "../images/character_facing_down.png"
                 }
 
 const movementSpeed = 10
 var pressedKeys = {}
 
-//set initial player position
+
+//set initialise player
 player.style.left = playerObj.positionX + "px"
 player.style.top = playerObj.positionY + "px"
+var image = document.createElement("IMG")
+image.src = playerObj.image
+player.appendChild(image)
 
 
 /*
@@ -38,7 +43,7 @@ setInterval(function runController(){
   var keys = [65,68,87,83]
   for(i=0;i<keys.length;i++){
     if(pressedKeys[keys[i]]){
-      movePlayer(keys[i]);
+      movePlayer(keys[i])
     }
   }
 },33)

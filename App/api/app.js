@@ -18,6 +18,10 @@ module.exports = (app) => {
     app.use('/home', homeRoute);
     app.use('/game', gameRoute);
 
+    app.get('/', (req, res, next) => {
+        res.sendFile(resolve('./App/public/html/index.html'));
+    })
+
     app.get('/socket.io.js', (req, res, next) => {
         res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js'));
     });

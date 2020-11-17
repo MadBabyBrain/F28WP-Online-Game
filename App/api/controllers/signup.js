@@ -11,7 +11,7 @@ exports.user_signup = (req, res, next) => {
         return res.status(409).json({
             error: "Mail Exists"
         });
-      } else {
+     } else {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) {
             return res.status(500).json({
@@ -39,6 +39,6 @@ exports.user_signup = (req, res, next) => {
               });
           }
         });
-      }
+      };
     });
 };

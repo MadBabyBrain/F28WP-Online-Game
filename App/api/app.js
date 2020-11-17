@@ -41,8 +41,13 @@ module.exports = (app) => {
     app.get('/js/Game_Logic.js', (req, res, next) => {
         res.sendFile(resolve('./App/public/js/Game_Logic.js'));
     });
+
     app.get('/js/Player_Controller.js', (req, res, next) => {
         res.sendFile(resolve('./App/public/js/Player_Controller.js'));
+    });
+
+    app.get('/js/signup.js', (req, res, next) => {
+        res.sendFile(resolve('./App/public/js/signup.js'));
     });
     app.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");

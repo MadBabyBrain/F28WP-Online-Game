@@ -1,6 +1,6 @@
 var player = document.getElementById("player");
-var positionX = 800
-var positionY = 400
+var positionX = Math.floor(Math.random() * 800 + 50)
+var positionY = Math.floor(Math.random() * 600 + 50)
 const movementSpeed = 10
 var pressedKeys = {}
 

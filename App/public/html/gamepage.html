@@ -3,25 +3,24 @@
 
 <head>
     <link rel="stylesheet" href="../css/player.css">
+    <script src="/socket.io.js"></script>
     <script src="../js/Player_Controller.js"></script>
     <!-- <script src="../js/Game_Logic.js"></script> -->
-    <script src="/socket.io.js"></script>
-    <script>
-        var socket = io();
-
-        function updateposition(player) {
-            socket.emit('move', player)
-        }
-    </script>
 </head>
 
 <body>
     <div id="buttons">
+        <button onclick="createPlayer()">create player</button>
         <button onclick="movePlayer(87)">Up</button>
         <button onclick="movePlayer(83)">Down</button>
         <button onclick="movePlayer(65)">Left</button>
         <button onclick="movePlayer(68)">Right</button>
     </div>
+
+    <div class="interactable" id="rock" style="background-color: red; height: 200px; width: 200px;"></div>
+    <div class="interactable" id="paper" style="background-color: green; height: 200px; width: 200px;"></div>
+    <div class="interactable" id="scissors" style="background-color: blue; height: 200px; width: 200px;"></div>
+
     <div class="game-grid">
         <div class="grid"></div>
         <div class="grid"></div>

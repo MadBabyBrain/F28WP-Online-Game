@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="../css/player.css">
-</head>
-<body>
-    <div id="player">
-    </div>
     <script src="../js/Player_Controller.js"></script>
-    <script src="../js/Game_Logic.js"></script>
-    <div class = "game-grid">
+    <!-- <script src="../js/Game_Logic.js"></script> -->
+    <script src="/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        function updateposition(player) {
+            socket.emit('move', player)
+        }
+    </script>
+</head>
+
+<body>
+    <div id="buttons">
+        <button onclick="movePlayer(87)">Up</button>
+        <button onclick="movePlayer(83)">Down</button>
+        <button onclick="movePlayer(65)">Left</button>
+        <button onclick="movePlayer(68)">Right</button>
+    </div>
+    <div class="game-grid">
         <div class="grid"></div>
         <div class="grid"></div>
         <div class="grid"></div>
@@ -52,4 +66,5 @@
     </div>
 
 </body>
+
 </html>

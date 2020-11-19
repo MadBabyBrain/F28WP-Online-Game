@@ -1,10 +1,12 @@
 module.exports = (io) => {
     io.on('connection', (socket) => {
         console.log('a user connected');
-        console.log(socket.handshake.address);
+
+        socket.on('move', (position) => {
+            console.log('X: ' + position.positionX + ' Y: ' + position.positionY);
+        });
+
     });
 
-    io.on('move', (socket) => {
-        console.log('player has moved');
-    });
+
 }

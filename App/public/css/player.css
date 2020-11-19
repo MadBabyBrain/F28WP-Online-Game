@@ -1,3 +1,6 @@
-#player{
-  position:absolute;
+#player {
+  position: absolute;
+  background-image: url("./player.png");
+  width: 100px;
+  height: 100px;
 }

@@ -3,51 +3,47 @@ main{
   flex-direction:row;
   background-color: teal;
 }
-.round{
+.game_round{
   display:flex;
   flex-direction:column;
   justify-content:center;
-  width:180px;
+  width:200px;
   list-style:none;
   padding:0;
 }
-  .round .spacer{ flex-grow:1; }
-  .round .spacer:first-child,
-  .round .spacer:last-child{ flex-grow:.5; }
-
-  .round .spacer_player{
-    flex-grow:1.5;
+  .game_round .spacer{ flex-grow:1.5; }
+  .game_round .spacer:first-child,
+  .game_round .spacer:last-child{ flex-grow:.5; }
+  .game_round .spacer_player{
+    flex-grow:3;
   }
-
-
 body{
   font-size:medium;
   padding:0px;
-  line-height:1.4em;
-  
+  line-height:2em;
 }
 
-li.game{
-  padding-left:20px;
+div.game{
+  padding-left:10px;
 }
 
-  li.game.winner{
+  div.game.winner{
     font-weight:bold;
   }
   
-  li.game span{
+  div.game span{
     float:right;
     margin-right:4px;
   }
 
-  li.top_player
-  { border-bottom:3px solid black; }
+  div.top_player
+  { border-bottom:4px solid black; }
 
-  li.spacer_player{ 
-    border-right:3px solid black;
+  div.spacer_player{ 
+    border-right:4px solid black;
     min-height:50px;
   }
 
-  li.bottom_player{ 
-    border-top:3px solid black;
+  div.bottom_player{ 
+    border-top:4px solid black;
   }

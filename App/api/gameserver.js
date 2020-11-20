@@ -5,15 +5,16 @@ module.exports = (io) => {
 
         socket.emit('load_players', gameState);
 
-        socket.on('create_player', (player, id) => {
-            gameState[id] = {
+        socket.on('create_player', player => {
+            gameState[player.id] = {
                 x : player.positionX,
-                y : player.positionY
+                y : player.positionY,
+                sprite : player.sprite
             };
 
-            socket.broadcast.emit('load_player', id, gameState);
-
             //console.log(gameState);
+
+            socket.broadcast.emit('load_player', socket.id, gameState);
         });
 
         socket.on('move', player => {

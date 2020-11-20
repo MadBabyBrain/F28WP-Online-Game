@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Select Your Character</title>
+        <script src="/socket.io.js"></script>
+        <script>
+
+            function moops() {
+                prevchar();
+            };
+
+        </script>
+        <srcipt src="../js/select_character.js"></srcipt>
+
+        <script>
+            //"red", "green", "blue"
+            const characters = [];
+            characters.push('character_facing_down');
+            characters.push('character_facing_left');
+            characters.push('character_facing_up');
+            characters.push('character_facing_right');
+
+            let index = 1;
+            const charDisplay = document.createElement("IMG");
+            charDisplay.setAttribute("src", `../images/${characters[index]}.png`);
+            charDisplay.width = "250";
+            charDisplay.height = "250";
+
+
+            const header = document.createElement("h1");
+            header.innerHTML = "Fuck jakub";
+
+            document.body.insertBefore(header, document.getElementById("buttons"));
+            document.body.insertBefore(charDisplay, document.getElementById("buttons"));
+
+            
+            function previous() {
+                console.log("Fuck off")
+                // previous index of array
+                if (index == 0) {
+                    index = characters.length - 1;
+                } else {
+                    --index;
+                }
+                
+                charDisplay.setAttribute("src", `../images/${characters[index]}.png`);
+                // charDisplay.src = ('../images/' + characters[index] + '.png');
+            }
+
+            function next() {
+                console.log("Fuck off")
+                // previous index of array
+                if (index == (characters.length - 1)) {
+                    index = 0;
+                } else {
+                    ++index;
+                }
+                
+                charDisplay.setAttribute("src", `../images/${characters[index]}.png`);
+                // charDisplay.src = ('../images/' + characters[index] + '.png');
+            }
+
+            function select() {
+                Player["id"] = socket.id;
+                Player["sprite"] = characters[index];
+                socket.emit('create_player', Player);
+                // TODO : redirect to /game
+            }
+        </script>
+    </head>
+
+    <body>
+        <!-- <img id="character-display" src="../images/blue.png" alt="character select"/> -->
+
+        <div id = "buttons">
+            <button onclick="previous()"> prev </button>
+            <button onclick="next()"> next </button>
+            <button onclick="select()"> Select </button>
+        </div>
+    </body>
+</html>

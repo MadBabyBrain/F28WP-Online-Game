@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const resolve = require('path').resolve;
 const usersController = require('../../controllers/users');
 const SignController = require('../../controllers/signup');
 const loginController = require('../../controllers/login');
 const deleteController = require('../../controllers/deleteuser');
 
-router.get('/', usersController.getAll);
+// router.get('/signup', (req, res, next) => {
+//     res.sendFile(resolve('../public/html/index.html'));
+//   });
+// /App/public/html/index.html
+// router.get('/', usersController.getAll);
 
 // Will user endpoint need a post request ?
 // router.post('/', (req, res, next) => {
@@ -16,9 +21,9 @@ router.get('/', usersController.getAll);
 //     });
 // });
 
-router.get('/:userId', usersController.getById);
+//router.get('/:userId', usersController.getById);
 
-router.patch('/:userId', usersController.patchById);
+//router.patch('/:userId', usersController.patchById);
 
 // router.delete('/:userId', usersController.deleteById);
 

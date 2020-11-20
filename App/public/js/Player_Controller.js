@@ -1,4 +1,5 @@
 const socket = io();
+
 const Player = {
   id : "",
   x : 0,
@@ -28,6 +29,7 @@ socket.on('load_players', gs => {
     const player = document.createElement('IMG');
     player.setAttribute("class", "player");
     player.setAttribute("id", p);
+    player.setAttribute("src", `../images/${player.sprite}.png`);
     document.body.insertBefore(player, document.getElementById("buttons"));
 
     //set initialise player
@@ -42,18 +44,13 @@ socket.on('update_players', (id, pos) => {
   player.style.top = pos.y + "px";
 });
 
-let playerObj = {
-  positionX: Math.floor(Math.random() * 600 + 100),
-  positionY: Math.floor(Math.random() * 400 + 100),
-  image: "../images/character_facing_down.png"
-}
-
 // var image = document.createElement("IMG")
 // image.src = image
 // player.appendChild(image)
 
 socket.on('load_player', (id, gs) => {
   const player = document.createElement('IMG');
+  player.setAttribute("src", "../images/" + gs[id].sprite + ".png");
   player.setAttribute("class", "player");
   player.setAttribute("id", id);
   document.body.insertBefore(player, document.getElementById("buttons"));
@@ -62,25 +59,6 @@ socket.on('load_player', (id, gs) => {
   player.style.left = gs[id].x + "px";
   player.style.top = gs[id].y + "px";
 });
-
-function createPlayer() {
-  const player = document.createElement('IMG');
-  player.setAttribute("class", "player");
-  player.setAttribute("id", socket.id);
-  document.body.insertBefore(player, document.getElementById("buttons"));
-
-  //set initialise player
-  player.style.left = playerObj.positionX + "px";
-  player.style.top = playerObj.positionY + "px";
-
-  Player["id"] = socket.id;
-  Player["x"] = playerObj.positionX;
-  Player["y"] = playerObj.positionY;
-  Player["ref"] = document.getElementById(Player.id);
-
-  socket.emit('create_player', playerObj, socket.id);
-}
-
 
 
 const movementSpeed = 10;

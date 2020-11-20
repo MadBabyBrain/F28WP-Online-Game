@@ -18,9 +18,6 @@ module.exports = (app) => {
     app.use('/home', homeRoute);
     app.use('/game', gameRoute);
 
-    app.get('/', (req, res, next) => {
-        res.sendFile(resolve('./App/public/html/index.html'));
-    });
 
     app.get('/socket.io.js', (req, res, next) => {
         res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js'));
@@ -30,8 +27,16 @@ module.exports = (app) => {
         res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js.map'));
     });
 
-    app.get('/images/player_placeholder.png', (req, res, next) => {
-        res.sendFile(resolve('./App/public/images/player_placeholder.png'));
+    app.get('/users/signup', (req, res, next) => {
+        res.sendFile(resolve('./App/public/html/signup.html'));
+    });
+
+    app.get("/images/:id", (req, res, next) => {
+        res.sendfile(resolve(`./app/public/images/${req.params.id}`))
+    });
+
+    app.get("/js/select_character.js", (req, res, next) => {
+        res.sendfile(resolve('./app/public/js/select_character.js'))
     });
 
     app.get('/css/player.css', (req, res, next) => {
@@ -49,6 +54,7 @@ module.exports = (app) => {
     app.get('/js/signup.js', (req, res, next) => {
         res.sendFile(resolve('./App/public/js/signup.js'));
     });
+
     app.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header(

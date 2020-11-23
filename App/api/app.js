@@ -30,8 +30,21 @@ module.exports = (app) => {
         res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js.map'));
     });
 
+<<<<<<< Updated upstream
     app.get('/images/player_placeholder.png', (req, res, next) => {
         res.sendFile(resolve('./App/public/images/player_placeholder.png'));
+=======
+    app.get('/users/signup', (req, res, next) => {
+        res.sendFile(resolve('./App/public/html/signup.html'));
+    });
+
+    app.get("/images/:id", (req, res, next) => {
+        res.sendFile(resolve(`./app/public/images/${req.params.id}`))
+    });
+
+    app.get("/js/select_character.js", (req, res, next) => {
+        res.sendFile(resolve('./app/public/js/select_character.js'))
+>>>>>>> Stashed changes
     });
 
     app.get('/css/player.css', (req, res, next) => {
@@ -49,16 +62,28 @@ module.exports = (app) => {
     app.get('/js/signup.js', (req, res, next) => {
         res.sendFile(resolve('./App/public/js/signup.js'));
     });
+<<<<<<< Updated upstream
+=======
+
+    app.get('/undefined', (req, res, next) => {
+        res.sendFile(resolve('./App/public/images/player_placeholder.png'))
+    });
+
+    app.get('/', (req, res, next) => {
+        res.sendFile(resolve('./App/public/html/gamepage.html'))
+    });
+
+>>>>>>> Stashed changes
     app.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header(
-          "Access-Control-Allow-Headers",
-          "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+            "Access-Control-Allow-Headers",
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
         );
         if (req.method === "OPTIONS") {
-          res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-          return res.status(200).json({});
+            res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+            return res.status(200).json({});
         }
         next();
-      });
+    });
 }

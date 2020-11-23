@@ -1,6 +1,9 @@
 #player {
   position: absolute;
+<<<<<<< Updated upstream
   background-image: url("./player.png");
+=======
+>>>>>>> Stashed changes
   width: 100px;
   height: 100px;
 }

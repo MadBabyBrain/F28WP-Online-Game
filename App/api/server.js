@@ -12,14 +12,15 @@ const iosocket = require('./gameserver');
 const port = process.env.PORT || 3000;
 
 mongoose.connect(
-    process.env.DB_HOST, 
+    process.env.DB_HOST,
     {
-        useNewUrlParser: true, 
+        useNewUrlParser: true,
         useUnifiedTopology: true
     }
 );
 
 mongoose.Promise = global.Promise;
+
 
 setuproutes(app);
 iosocket(io);

@@ -74,20 +74,22 @@ module.exports = (io) => {
 
         socket.on('disconnect', reason => {
             console.log("player " + socket.id + " disconnected...");
-            const id = socket.id;
-            const room = gameState[socket.id].room;
-            delete gameState[socket.id];
-            console.log(gameState);
 
-            rooms["room-"+room].num_players--;
+            if ( Object.keys(gameState).length !== 0 && gameState.constructor !== Object ) {
+                const id = socket.id;
+                const room = gameState[socket.id].room;
+                delete gameState[socket.id];
 
-            if (rooms["room-"+room].num_players === -1) {
-                delete rooms["room-"+current_available_room];
-                current_available_room--;
+                rooms["room-"+room].num_players--;
+
+                if (rooms["room-"+room].num_players === -1) {
+                    delete rooms["room-"+current_available_room];
+                    current_available_room--;
+                }
+
+                console.log(rooms);
+                socket.broadcast.emit('remove_player', id);
             }
-            
-            console.log(rooms);
-            socket.broadcast.emit('remove_player', id);
         });
 
     });

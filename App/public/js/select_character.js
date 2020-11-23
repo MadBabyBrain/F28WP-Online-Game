@@ -36,12 +36,12 @@ function createPlayer() {
     player.src = `../images/${characters[index]}.png`;
     document.body.insertBefore(player, document.getElementById("buttons"));
 
-    let x = Math.floor(Math.random() * 600 + 100);
-    let y = Math.floor(Math.random() * 400 + 100);
+    let x = Math.floor(Math.random() * 100) * 6;
+    let y = Math.floor(Math.random() * 100) * 4;
 
     //set initialise player
     player.style.left = x + "px";
-    player.style.top = + y + "px";
+    player.style.top = y + "px";
 
     a = characters[index];
     Player["id"] = socket.id;
@@ -49,7 +49,7 @@ function createPlayer() {
     Player["x"] = x;
     Player["y"] = y;
     Player["ref"] = document.getElementById(socket.id);
-
+    Player["room"] = '1';
     socket.emit('create_player', Player);
 }
 

@@ -3,18 +3,11 @@
 
 <head>
     <link rel="stylesheet" href="../css/player.css">
+    <script src="/socket.io.js"></script>
     <script src="../js/Player_Controller.js"></script>
     <!-- <script src="../js/Game_Logic.js"></script> -->
-    <script src="/socket.io.js"></script>
-    <script>
-        var socket = io();
+    <script src="../js/select_character.js"></script>
 
-<<<<<<< Updated upstream
-        function updateposition(player) {
-            socket.emit('move', player)
-        }
-    </script>
-=======
     <style>
         /* The Modal (background) */
         #character-select-box {
@@ -40,18 +33,37 @@
             /* Black w/ opacity */
         }
     </style>
->>>>>>> Stashed changes
 </head>
 
 <body>
+    <div id="character-select-box">
+        <h1>SELECT YOUR CHARACTER</h1>
+        <img id="character-select" src="../images/Character_facing_down.png" />
+        <br>
+        <button onclick="previous()"> prev </button>
+        <button onclick="next()"> next </button>
+        <button onclick="select()"> Select </button>
+    </div>
+
     <div id="buttons">
+        <!-- <button onclick="createPlayer()">create player</button> -->
         <button onclick="movePlayer(87)">Up</button>
         <button onclick="movePlayer(83)">Down</button>
         <button onclick="movePlayer(65)">Left</button>
         <button onclick="movePlayer(68)">Right</button>
-        <button onclick="showGamestate()">gamestate</button>
+        <button onclick="showGamestate()">show game state</button>
     </div>
+
+    <div class="interactable" id="rock" style="background-color: red; height: 200px; width: 200px;"></div>
+    <div class="interactable" id="paper" style="background-color: green; height: 200px; width: 200px;"></div>
+    <div class="interactable" id="scissors" style="background-color: blue; height: 200px; width: 200px;"></div>
+
     <div class="game-grid">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
 
     </div>
 

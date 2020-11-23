@@ -22,6 +22,7 @@ mongoose.connect(
 mongoose.Promise = global.Promise;
 
 
+
 setuproutes(app);
 iosocket(io);
 

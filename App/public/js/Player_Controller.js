@@ -5,11 +5,13 @@ const Player = {
   x : 0,
   y : 0,
   sprite : "",
-  ref : null
+  ref : null,
+  room : null
 };
 
 const interactables = document.getElementsByClassName("interactable");
-console.log(interactables);
+//console.log(interactables);
+
 const interact_coords = {
   rock : {},
   paper : {},
@@ -20,16 +22,21 @@ window.addEventListener("onbeforeunload", function() {
   socket.disconnect();
 });
 
+socket.on('join_room', room => {
+  Player["room"] = room;
+  socket.emit('update_state', socket.id, Player);
+});
+
 socket.on('remove_player', id => {
   document.getElementById(id).remove();
-})
+});
 
 socket.on('load_players', gs => {
   for (p in gs) {
     const player = document.createElement('IMG');
     player.setAttribute("class", "player");
     player.setAttribute("id", p);
-    player.setAttribute("src", `../images/${player.sprite}.png`);
+    player.src = `../images/${gs[p].sprite}.png`;
     document.body.insertBefore(player, document.getElementById("buttons"));
 
     //set initialise player
@@ -50,7 +57,7 @@ socket.on('update_players', (id, pos) => {
 
 socket.on('load_player', (id, gs) => {
   const player = document.createElement('IMG');
-  player.setAttribute("src", "../images/" + gs[id].sprite + ".png");
+  player.src = `../images/${gs[id].sprite}.png`;
   player.setAttribute("class", "player");
   player.setAttribute("id", id);
   document.body.insertBefore(player, document.getElementById("buttons"));
@@ -119,6 +126,6 @@ function movePlayer(key) {
       Player.ref.style.top = Player.y + "px"
       break
   }
-  console.log(Player.x, Player.y);
+
   socket.emit('move', Player);
 };

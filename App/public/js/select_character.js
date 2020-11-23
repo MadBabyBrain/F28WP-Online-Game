@@ -33,19 +33,22 @@ function createPlayer() {
     const player = document.createElement('IMG');
     player.setAttribute("class", "player");
     player.setAttribute("id", socket.id);
+    player.src = `../images/${characters[index]}.png`
     document.body.insertBefore(player, document.getElementById("buttons"));
 
     let x = Math.floor(Math.random() * 600 + 100);
     let y = Math.floor(Math.random() * 400 + 100);
     //set initialise player
     player.style.left = x + "px";
-    player.style.top =  + y + "px";
-  
+    player.style.top = y + "px";
+
+    console.log(characters[index]);
+
     Player["id"] = socket.id;
     Player["sprite"] = characters[index];
     Player["x"] = x;
     Player["y"] = y;
-    //Player["ref"] = document.getElementById(Player.id);
+    Player["ref"] = document.getElementById(Player.id);
   
     socket.emit('create_player', Player);
   }

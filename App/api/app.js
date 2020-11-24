@@ -62,20 +62,6 @@ module.exports = (app) => {
         res.sendFile(resolve('./App/public/js/signup.js'));
     });
 
-<<<<<<< Updated upstream
-
-    app.get('/undefined', (req, res, next) => {
-        res.sendFile(resolve('./App/public/images/player_placeholder.png'))
-    });
-
-    app.get('/', (req, res, next) => {
-        res.sendFile(resolve('./App/public/html/gamepage.html'))
-=======
-    app.get('/images/undefined.png', (req, res, next) => {
-        res.sendFile(resolve('./App/public/images/player_placeholder.png'));
->>>>>>> Stashed changes
-    });
-
     app.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header(

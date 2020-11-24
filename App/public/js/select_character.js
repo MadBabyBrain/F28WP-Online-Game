@@ -48,13 +48,8 @@ function createPlayer() {
     Player["sprite"] = '../images/' + a;
     Player["x"] = x;
     Player["y"] = y;
-<<<<<<< Updated upstream
-    Player["ref"] = document.getElementById(socket.id);
-    Player["room"] = '1';
-=======
     Player["ref"] = document.getElementById(Player.id);
 
->>>>>>> Stashed changes
     socket.emit('create_player', Player);
 }
 

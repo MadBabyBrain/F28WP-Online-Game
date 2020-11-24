@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../css/player.css">
+    <script src="/socket.io.js"></script>
+    <script src="../js/Player_Controller.js"></script>
+    <!-- <script src="../js/Game_Logic.js"></script> -->
+    <script src="../js/select_character.js"></script>
+
+    <style>
+        #mydiv {
+            background-image: url(../images/Wood_Texture_Pack/Wood_Texture_1.png);
+            background-size: 50px 50px;
+            background-repeat: repeat;
+            width: 1904px;
+            height: 921px;
+        }
+
+        #body {
+            background-color: black;
+        }
+    </style>
+    <style>
+        /* The Modal (background) */
+        #character-select-box {
+            display: block;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 700px;
+            /* Full width */
+            height: 700px;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        .collision-box {
+            border-style: solid;
+            border-color: greenyellow;
+        }
+
+        .collision-box-hit {
+            border-style: solid;
+            border-color: red;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-rows: 1fr 2fr 1fr;
+            grid-template-columns: 1fr 2fr 1fr;
+            width: 700px;
+            height: 700px;
+
+            background-color: teal;
+        }
+
+        #rock {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        #paper {
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        #scissors {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+
+        #bg-text {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            grid-row-end: 3;
+
+            justify-self: center;
+
+            text-align: center;
+            font-size: 2em;
+            font-family: 'Times New Roman', Times, serif;
+            color: #006060;
+        }
+
+        .interactable {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div id="mydiv">
+        <div id="character-select-box">
+            <h1>SELECT YOUR CHARACTER</h1>
+            <img id="character-select" src="../images/Character_facing_down.png" />
+            <br>
+            <button onclick="previous()"> prev </button>
+            <button onclick="next()"> next </button>
+            <button onclick="select()"> Select </button>
+        </div>
+    </div>
+</body>
+
+</html>

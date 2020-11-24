@@ -6,18 +6,41 @@ const Player = {
   y: 0,
   sprite: "",
   ref: null,
+<<<<<<< Updated upstream
   room: ''
 };
 
 const interactables = document.getElementsByClassName("interactable");
 // console.log(interactables);
+=======
+  room: null
+};
+
+>>>>>>> Stashed changes
 const interact_coords = {
   rock: {},
   paper: {},
   scissors: {}
 };
 
+<<<<<<< Updated upstream
 window.addEventListener("onbeforeunload", function () {
+=======
+socket.on('start_game', () => {
+  console.log("game starting")
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      // Action to be performed when the document is read;
+    }
+  };
+  xhttp.open("GET", "filename", true);
+  xhttp.send();
+});
+
+window.addEventListener("onbeforeunload", function () {
+  socket.emit('disconnect', Player)
+>>>>>>> Stashed changes
   socket.disconnect();
 });
 
@@ -29,6 +52,7 @@ socket.on('load_players', gs => {
   console.log("cum")
 
   for (p in gs) {
+<<<<<<< Updated upstream
     console.log(p + " : " + gs[p].room)
     console.log(Player.id + " : " + Player.room)
     console.log(gs[p].room === Player.room)
@@ -45,6 +69,18 @@ socket.on('load_players', gs => {
           player.style.top = gs[p].y + "px";
         }
       }
+=======
+    if (!document.getElementById(p)) {
+      const player = document.createElement('IMG');
+      player.setAttribute("class", "player");
+      player.setAttribute("id", p);
+      player.src = `../images/${gs[p].sprite}.png`;
+      document.body.insertBefore(player, document.getElementById("buttons"));
+
+      //set initialise player
+      player.style.left = gs[p].x + "px";
+      player.style.top = gs[p].y + "px";
+>>>>>>> Stashed changes
     }
   }
 });
@@ -64,6 +100,7 @@ socket.on('load_player', (id, gs) => {
 });
 
 
+<<<<<<< Updated upstream
 socket.on('update_players', (players) => {
   let player = document.getElementById(players.id);
   player.style.left = players.x + "px";
@@ -72,6 +109,9 @@ socket.on('update_players', (players) => {
 
 
 const movementSpeed = 10;
+=======
+const movementSpeed = 5;
+>>>>>>> Stashed changes
 var pressedKeys = {};
 
 /*
@@ -109,6 +149,7 @@ Convert the current x or y position to in integer then add/subtract 1 multiplyed
 the movement speed. Convert this back to px and set the new x or y position.
 */
 function movePlayer(key) {
+<<<<<<< Updated upstream
   switch (key) {
     case 65:
       Player.x = parseInt(Player.ref.style.left, 10) - movementSpeed
@@ -129,6 +170,29 @@ function movePlayer(key) {
   }
 
   // console.log(Player)
+=======
+  console.log(key);
+  if (document.getElementById(Player.id)) {
+    switch (key) {
+      case 65:
+        Player.x = parseInt(Player.ref.style.left, 10) - movementSpeed
+        Player.ref.style.left = Player.x + "px"
+        break
+      case 68:
+        Player.x = parseInt(Player.ref.style.left, 10) + movementSpeed
+        Player.ref.style.left = Player.x + "px"
+        break
+      case 87:
+        Player.y = parseInt(Player.ref.style.top, 10) - movementSpeed
+        Player.ref.style.top = Player.y + "px"
+        break
+      case 83:
+        Player.y = parseInt(Player.ref.style.top, 10) + movementSpeed
+        Player.ref.style.top = Player.y + "px"
+        break
+    }
+  }
+>>>>>>> Stashed changes
   socket.emit('move', Player);
 };
 

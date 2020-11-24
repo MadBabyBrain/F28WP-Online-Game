@@ -34,6 +34,10 @@ module.exports = (app) => {
         res.sendFile(resolve('./App/public/html/signup.html'));
     });
 
+    app.get('/images/Wood_Texture_Pack/:id', (req, res, next) => {
+        res.sendFile(resolve(`./app/public/images/Wood_Texture_Pack/${req.params.id}`))
+    });
+
     app.get("/images/:id", (req, res, next) => {
         res.sendFile(resolve(`./app/public/images/${req.params.id}`))
     });
@@ -58,6 +62,7 @@ module.exports = (app) => {
         res.sendFile(resolve('./App/public/js/signup.js'));
     });
 
+<<<<<<< Updated upstream
 
     app.get('/undefined', (req, res, next) => {
         res.sendFile(resolve('./App/public/images/player_placeholder.png'))
@@ -65,6 +70,10 @@ module.exports = (app) => {
 
     app.get('/', (req, res, next) => {
         res.sendFile(resolve('./App/public/html/gamepage.html'))
+=======
+    app.get('/images/undefined.png', (req, res, next) => {
+        res.sendFile(resolve('./App/public/images/player_placeholder.png'));
+>>>>>>> Stashed changes
     });
 
     app.use((req, res, next) => {

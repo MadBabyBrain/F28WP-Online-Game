@@ -7,6 +7,7 @@
     <script src="../js/Player_Controller.js"></script>
     <!-- <script src="../js/Game_Logic.js"></script> -->
     <script src="../js/select_character.js"></script>
+    <script src="../js/collision_detection.js"></script>
 
     <style>
         /* The Modal (background) */
@@ -21,6 +22,35 @@
             /* Location of the box */
             left: 0;
             top: 0;
+<<<<<<< Updated upstream
+=======
+            width: 700px;
+            /* Full width */
+            height: 700px;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        .collision-box {
+            border-style: solid;
+            border-color: greenyellow;
+        }
+
+        .collision-box-hit {
+            border-style: solid;
+            border-color: red;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-rows: 1fr 2fr 1fr;
+            grid-template-columns: 1fr 2fr 1fr;
+>>>>>>> Stashed changes
             width: 700px;
             /* Full width */
             height: 700px;
@@ -54,6 +84,7 @@
         <button onclick="showGamestate()">show game state</button>
     </div>
 
+<<<<<<< Updated upstream
     <div class="interactable" id="rock" style="background-color: red; height: 200px; width: 200px;"></div>
     <div class="interactable" id="paper" style="background-color: green; height: 200px; width: 200px;"></div>
     <div class="interactable" id="scissors" style="background-color: blue; height: 200px; width: 200px;"></div>
@@ -65,6 +96,18 @@
         <div class="grid"></div>
         <div class="grid"></div>
 
+=======
+
+
+    <div class="game-grid">
+        <div class="interactable collision-box" id="rock" style="background-color: red; height: 200px; width: 200px;">
+        </div>
+        <div class="interactable collision-box" id="paper"
+            style="background-color: green; height: 200px; width: 200px;"></div>
+        <div class="interactable collision-box" id="scissors"
+            style="background-color: blue; height: 200px; width: 200px;"></div>
+        <p id="bg-text">RPS</p>
+>>>>>>> Stashed changes
     </div>
 
 </body>

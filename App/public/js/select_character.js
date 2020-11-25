@@ -57,6 +57,8 @@ function select() {
     createPlayer();
     // console.log(socket.id);
 
-    const charSelector = document.getElementById("character-select-box");
+    const charSelector = document.getElementById("char-select-box");
+    const game = document.getElementById("game_div");
     charSelector.style.display = "none";
+    game.style.display = "block";
 }

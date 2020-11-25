@@ -1,4 +1,5 @@
 const socket = io();
+let doc = null;
 
 const Player = {
   id: "",
@@ -15,17 +16,25 @@ const interact_coords = {
   scissors: {}
 };
 
-socket.on('start_game', () => {
-  console.log("game starting")
+socket.on('start_game', (game) => {
+  // console.log("game starting")
+  unloadPlayers(game);
+  document.getElementById('lobby-main').remove();
 
-  // var xhttp = new XMLHttpRequest();
-  // xhttp.onreadystatechange = function () {
-  //   if (this.readyState == 4 && this.status == 200) {
+  fetch('http://localhost:3000/gameroom').then(res => {
+    // console.log("html found");
+    res.text().then(data => {
+      // console.log(data);
+      doc = (new DOMParser()).parseFromString(data, "text/html");
+      // console.log(doc.body.innerHTML);
+      // document.getElementsByTagName("body")[0].innerHTML += doc.body.innerHTML; // using this prevents the client from moving their characters
+      let body = document.querySelector("body");
+      body.insertAdjacentHTML("afterbegin", doc.body.innerHTML);
+      // call external script(s)
+      starttimer();
+    });
+  })
 
-  //   }
-  // };
-  // xhttp.open("GET", "/game/room", true);
-  // xhttp.send();
 
 });
 
@@ -40,7 +49,9 @@ socket.on('join_room', room => {
 });
 
 socket.on('remove_player', id => {
-  document.getElementById(id).remove();
+  if (document.getElementById(p)) {
+    document.getElementById(id).remove();
+  }
 });
 
 socket.on('load_players', gs => {
@@ -50,7 +61,7 @@ socket.on('load_players', gs => {
       player.setAttribute("class", "player");
       player.setAttribute("id", p);
       player.src = `../images/${gs[p].sprite}.png`;
-      document.body.insertBefore(player, document.getElementById("buttons"));
+      document.body.insertBefore(player, document.getElementById("lobby-main"));
 
       //set initialise player
       player.style.left = gs[p].x + "px";
@@ -81,7 +92,8 @@ socket.on('load_player', (id, gs) => {
   player.style.top = gs[id].y + "px";
 });
 
-
+const maxwidth = 1500;
+const maxheight = 800;
 const movementSpeed = 5;
 var pressedKeys = {};
 
@@ -120,26 +132,72 @@ Convert the current x or y position to in integer then add/subtract 1 multiplyed
 the movement speed. Convert this back to px and set the new x or y position.
 */
 function movePlayer(key) {
-  console.log(key);
+  // console.log(key);
   if (document.getElementById(Player.id)) {
     switch (key) {
       case 65:
         Player.x = parseInt(Player.ref.style.left, 10) - movementSpeed
-        Player.ref.style.left = Player.x + "px"
+        if (Player.x < 8) {
+          Player.ref.style.left = 8 + "px";
+        }
+        else {
+          Player.ref.style.left = Player.x + "px"
+        }
+
         break
       case 68:
         Player.x = parseInt(Player.ref.style.left, 10) + movementSpeed
-        Player.ref.style.left = Player.x + "px"
+
+        if (Player.x > maxwidth) {
+          Player.ref.style.left = maxwidth + "px";
+        }
+        else {
+          Player.ref.style.left = Player.x + "px"
+        }
+
         break
       case 87:
         Player.y = parseInt(Player.ref.style.top, 10) - movementSpeed
-        Player.ref.style.top = Player.y + "px"
+
+        if (Player.y < 8) {
+          Player.ref.style.top = 8 + "px";
+        }
+        else {
+          Player.ref.style.top = Player.y + "px"
+        }
+
         break
       case 83:
         Player.y = parseInt(Player.ref.style.top, 10) + movementSpeed
-        Player.ref.style.top = Player.y + "px"
+
+        if (Player.y > maxheight) {
+          Player.ref.style.top = maxheight + "px";
+        }
+        else {
+          Player.ref.style.top = Player.y + "px"
+        }
+
         break
     }
   }
+
+  if (document.getElementById("rock")) {
+    checkCollision(Player);
+  }
+
   socket.emit('move', Player);
 };
+
+
+
+
+function unloadPlayers(game) {
+  for (p in game) {
+    if (p !== Player.id) {
+      if (document.getElementById(p)) {
+        let player = document.getElementById(p);
+        player.remove();
+      }
+    }
+  }
+}

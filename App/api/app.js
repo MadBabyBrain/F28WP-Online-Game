@@ -18,24 +18,9 @@ module.exports = (app) => {
     app.use('/home', homeRoute);
     app.use('/game', gameRoute);
 
+
     app.get('/gameroom', (req, res, next) => {
         res.sendFile(resolve('./App/public/html/gamepage.html'));
-    });
-
-    app.get('/socket.io.js', (req, res, next) => {
-        res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js'));
-    });
-
-    app.get('/socket.io.min.js.map', (req, res, next) => {
-        res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js.map'));
-    });
-
-    app.get('/users/signup', (req, res, next) => {
-        res.sendFile(resolve('./App/public/html/signup.html'));
-    });
-
-    app.get('/images/Wood_Texture_Pack/:id', (req, res, next) => {
-        res.sendFile(resolve(`./app/public/images/Wood_Texture_Pack/${req.params.id}`))
     });
 
     app.get("/images/:id", (req, res, next) => {
@@ -46,21 +31,41 @@ module.exports = (app) => {
         res.sendFile(resolve('./app/public/js/select_character.js'))
     });
 
-    app.get('/css/player.css', (req, res, next) => {
-        res.sendFile(resolve('./App/public/css/player.css'));
+    app.get('/css/:id', (req, res, next) => {
+        res.sendFile(resolve(`./App/public/css/${req.params.id}`));
     });
 
-    app.get('/js/Game_Logic.js', (req, res, next) => {
-        res.sendFile(resolve('./App/public/js/Game_Logic.js'));
+    app.get('/js/:id', (req, res, next) => {
+        res.sendFile(resolve(`./App/public/js/${req.params.id}`));
     });
 
-    app.get('/js/Player_Controller.js', (req, res, next) => {
-        res.sendFile(resolve('./App/public/js/Player_Controller.js'));
+    app.get('/images/Wood_Texture_Pack/:id', (req, res, next) => {
+        res.sendFile(resolve(`./app/public/images/Wood_Texture_Pack/${req.params.id}`))
     });
 
-    app.get('/js/signup.js', (req, res, next) => {
-        res.sendFile(resolve('./App/public/js/signup.js'));
+    app.get('/socket.io.js', (req, res, next) => {
+        res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js'));
     });
+
+    app.get('/socket.io.min.js.map', (req, res, next) => {
+        res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js.map'));
+    });
+
+    // app.get('/users/signup', (req, res, next) => {
+    //     res.sendFile(resolve('./App/public/html/signup.html'));
+    // });
+
+    // app.get('/js/Game_Logic.js', (req, res, next) => {
+    //     res.sendFile(resolve('./App/public/js/Game_Logic.js'));
+    // });
+
+    // app.get('/js/Player_Controller.js', (req, res, next) => {
+    //     res.sendFile(resolve('./App/public/js/Player_Controller.js'));
+    // });
+
+    // app.get('/js/signup.js', (req, res, next) => {
+    //     res.sendFile(resolve('./App/public/js/signup.js'));
+    // });
 
     app.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");

@@ -1,9 +1,3 @@
-<html>
-<head>
-<title> Waiting lobby </title>
-</head>
-<style>
-
 .btn {		
 	position: relative;	
 	padding: 2rem 4.2rem;
@@ -56,7 +50,6 @@ position: relative;
 	transition-delay: .35s;
 }
 
-
 /* From Left */
 
 .from-left:before, 
@@ -87,7 +80,7 @@ position: relative;
 	box-sizing: border-box;
 }
 
-body {
+/* body {
 	--def: #96B7C4; 	
 	--inv: #fff;
 	display: flex;
@@ -97,15 +90,4 @@ body {
 	height: 100vh;
 	width: 100%;
 	background-image: linear-gradient(-25deg, #616161 0%, #96B7C4 100%);
-}
-
-
-
-</style>
-<h2> Welcome </h2>
-<h1> to the Rock Paper scissors tourney </h1>
-<div class="btn from-left">Enter The tournament</div>
-
-
-
-</html>
+} */

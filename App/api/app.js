@@ -34,6 +34,10 @@ module.exports = (app) => {
         res.sendFile(resolve(`./public/html/${req.params.id}`));
     });
 
+    app.get('/html/lobbyroom.html', (req, res, next) => {
+        res.sendFile(resolve('./public/html/lobbyroom/html'));
+    });
+
     app.get("/images/:id", (req, res, next) => {
         res.sendFile(resolve(`./public/images/${req.params.id}`))
     });

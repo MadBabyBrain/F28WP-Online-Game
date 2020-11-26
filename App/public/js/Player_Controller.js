@@ -31,12 +31,33 @@ socket.on('start_game', (game) => {
       let body = document.querySelector("body");
       body.insertAdjacentHTML("afterbegin", doc.body.innerHTML);
       // call external script(s)
-      starttimer();
+      starttimer(socket);
     });
   })
-
-
+  setsize();
 });
+
+
+socket.on('new_round', () => {
+  starttimer(socket);
+});
+
+
+socket.on('player_disconnect', () => {
+  alert("You have lost the round");
+  document.location.reload(true);
+})
+
+socket.on('win', () => {
+  alert("You have won the tournament");
+
+  // mutliple checks to see if the browser has a token stored locally
+  if (localStorage.getItem('token') && localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null) {
+    socket.emit('increase_point', localStorage.getItem('token'));
+  }
+
+  document.location.reload(true);
+})
 
 window.addEventListener("onbeforeunload", function () {
   socket.emit('disconnect', Player)
@@ -44,6 +65,7 @@ window.addEventListener("onbeforeunload", function () {
 });
 
 socket.on('join_room', room => {
+  beginsize();
   Player["room"] = room;
   socket.emit('update_state', socket.id, Player);
 });
@@ -92,10 +114,21 @@ socket.on('load_player', (id, gs) => {
   player.style.top = gs[id].y + "px";
 });
 
-const maxwidth = 1500;
-const maxheight = 800;
-const movementSpeed = 5;
+var maxwidth = 0;
+var maxheight = 0;
+var movementSpeed = 0;
 var pressedKeys = {};
+
+function beginsize() {
+  maxwidth = document.getElementById("game_div").getBoundingClientRect()["width"] - 30;
+  maxheight = document.getElementById("game_div").getBoundingClientRect()["height"] - 50;
+  movementSpeed = 5;
+}
+
+function setsize() {
+  maxwidth = 670;
+  maxheight = 650;
+}
 
 /*
 If a key is pressed then set the index corrosponding with the keycode that
@@ -108,6 +141,10 @@ document.addEventListener('keydown', event => {
 
 document.addEventListener('keyup', event => {
   pressedKeys[event.keyCode] = false
+
+  if (document.getElementById("rock")) {
+    checkCollision(Player);
+  }
 })
 
 
@@ -176,13 +213,9 @@ function movePlayer(key) {
         else {
           Player.ref.style.top = Player.y + "px"
         }
-
+        Player.sprite = "../images/Character_facing_down";
         break
     }
-  }
-
-  if (document.getElementById("rock")) {
-    checkCollision(Player);
   }
 
   socket.emit('move', Player);

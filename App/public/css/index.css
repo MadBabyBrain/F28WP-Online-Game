@@ -1,14 +1,197 @@
-.item1 {grid-area: RPC Battle Royale; font-size: 50px; }
-.item2 {grid-area: Please enter username; font-size: 20px; }
+  head {
+            --def: #96B7C4;
+            --inv: #fff;
+            background-image: linear-gradient(-25deg, #616161 0%, #96B7C4 100%);
+            font-size: 1rem;
+            color: var(--inv);
+            letter-spacing: 0.9rem;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+        }
 
-.grid-container{
-  display: grid;
-  grid-gap: 10px;
-  padding: 20px;
-  background-color: grey;
-}
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 10px;
-}
+        body {
+            color: white;
+            --def: #96B7C4;
+            --inv: #fff;
+            background-image: linear-gradient(-25deg, #616161 0%, #96B7C4 100%);
+            font-size: 1rem;
+            color: var(--inv);
+            letter-spacing: 0.4rem;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--inv);
+            letter-spacing: 0.7rem;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+        }
+
+        /* .img {
+                background-image: url("https://pbs.twimg.com/media/EGdw1vRWwAATjeB.png");
+                width: 100%;
+                height: 700%;
+
+                box-shadow: 0 0 8px 8px white inset;
+            } */
+
+        .grid {
+            height: 800px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 2fr 2fr ;
+        }
+
+        /* .image-left {
+                grid-column-start: 1;
+                grid-column-end: 2;
+                
+                position: relative;
+                left: 10%;
+                top: 25%;
+                max-width: 700px;
+            } */
+        
+        
+
+        #signup-header {
+            font-family: 'Times New Roman', Times, serif;
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #login-header {
+            font-family: 'Times New Roman', Times, serif;
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          
+        }
+        tr,
+        td {
+          border: 1px solid black;
+        }
+        #scoreboard
+       {
+        
+        border: 1px solid black;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        }
+
+        #Name {
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid black;
+        }
+
+        #Score {
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid black;
+        }
+        #scorename{
+          margin-top: 50%;
+          grid-column-start: 2;
+          grid-column-end: 3;
+          grid-row-start: 2;
+          grid-row-end: 3;
+        }
+
+        .guest-button {
+            left: 40%;
+            width: relative;
+            height: 100px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            grid-row-end: 3;
+            background-color: rgb(128, 128, 128);
+            color: white;
+            letter-spacing: 0.7rem;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+
+        }
+
+        .sign-up-form {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 2;
+            grid-row-end: 3;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            left: 0%;
+            top: 0%;
+            max-height: 300px;
+            max-width: 200px;
+        }
+
+        .login-form {
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 2;
+            grid-row-end: 3;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            left: 0%;
+            top: 0%;
+            max-height: 300px;
+            max-width: 200px;
+        }
+
+        .form {
+            background-color: #96B7C4;
+            border-radius: 1%;
+            height: 200px;
+            width: 200px;
+        }
+        label{ 
+          display: block;
+          text-align: center;
+        }
+
+        input{
+            display: block;
+            margin: 0 auto;
+        }
+        button{
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          background-color: rgb(128, 128, 128);
+          color: white;
+          letter-spacing: 0.25rem;
+          text-transform: uppercase;
+          padding: 0.1rem 0.3rem;
+        }
+
+        .background {
+            --def: #96B7C4;
+            --inv: #fff;
+            background-image: linear-gradient(-25deg, #616161 0%, #96B7C4 100%);
+        }
+        .container{
+          display: flex;
+          background-color: pink;
+        }

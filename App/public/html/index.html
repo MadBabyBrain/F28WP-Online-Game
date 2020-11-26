@@ -1,73 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Rock Paper Scissors</title>
-        <meta name="Author" description="Jakub" />
-        <script src="../js/signup.js"></script>
-        <style>
-            h1 {
-                text-align: center;
-            }
-            
-            .img {
-                background-image: url("https://pbs.twimg.com/media/EGdw1vRWwAATjeB.png");
-                width: 100%;
-                height: 700%;
 
-                box-shadow: 0 0 8px 8px white inset;
-            }
+<head>
+    <title>Rock Paper Scissors</title>
+    <meta name="Author" description="Jakub" />
+    <script src="../js/signup.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
 
-            .grid {
-                display: grid;
-                grid-template-columns: 50% 50%;
-            }
-
-            .image-left {
-                grid-column-start: 1;
-                grid-column-end: 2;
-                
-                position: relative;
-                left: 10%;
-                top: 25%;
-                max-width: 700px;
-            }
-
-            .sign-up-form {
-                grid-column-start: 2;
-                grid-column-end: auto;
-
-                position: relative;
-                left: 10%;
-                top: 25%;
-                max-width: 250px;
-            }
-
-            .form {
-                background-color: skyblue;
-                border-radius: 25%;
-            }
-        </style>
-    </head>
-
-    <body>
-        <div>
-            <h1>Sign Up</h1>
-            <div class="grid">
-                <div class="image-left">
+<body class="background">
+    <div>
+        <h1>User Login/Signup</h1>
+        <div class="grid">
+            <!-- <div class="image-left">
                     <div class="img"></div>
-                </div>
-
-                <div class="sign-up-form">
-                    <div class="form">
-                        <label for="email">E-mail:</label>
-                        <input type="text" id="email" name="email">
-                        <br>
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password">
-                        <button onclick="submit()">sign up</button>
-                    </div>
+                </div> -->
+            <h3 id="signup-header"> Sign-up</h3>
+            <div class="sign-up-form">
+                <div class="form">
+                    <br>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username">
+                    <br>
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="s-email" name="email">
+                    <br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="s-password" name="password">
+                    <button onclick="signup()">sign up</button>
                 </div>
             </div>
+
+            <h3 id="login-header"> Login </h3>
+            <div class="login-form">
+                <div class="form">
+                    <br>
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="l-email" name="email">
+                    <br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="l-password" name="password">
+                    <button onclick="login()">login</button>
+                </div>
+            </div>
+
+            <button class="guest-button" onclick="gotoGame()">Play as guest</button>
+
+            <table id="scoreboard">
+                <h3 id="scorename">Scoreboard</h3>
+                <tr>
+                    <th id="Name">USERNAME</th>
+                    <th id="Score">POINTS</th>
+                </tr>
+            </table>
         </div>
-    </body>
+    </div>
+
+    <script src="../js/load_score_table.js"></script>
+
+</body>
+
 </html>

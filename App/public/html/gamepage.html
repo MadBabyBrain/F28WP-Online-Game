@@ -2,23 +2,20 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" href="../css/gamepage.css">
 </head>
 
 <body>
-    <main>
+    <main id="game-main">
         <div class="game-grid">
-            <div class="interactable collision-box" id="rock"
-                style="background-color: red; height: 200px; width: 200px; text-align: center;">
-                rock
+            <div class="interactable collision-box options" id="rock" style="background-color: red;">
+                <p id="game-text">rock</p>
             </div>
-            <div class="interactable collision-box" id="paper"
-                style="background-color: green; height: 200px; width: 200px; text-align: center">
-                paper
+            <div class="interactable collision-box options" id="paper" style="background-color: green;">
+                <p id="game-text">paper</p>
             </div>
-            <div class="interactable collision-box" id="scissors"
-                style="background-color: blue; height: 200px; width: 200px; text-align: center">
-                scissors
+            <div class="interactable collision-box options" id="scissors" style="background-color: blue;">
+                <p id="game-text">scissors</p>
             </div>
             <p id="bg-text">RPS</p>
             <p id="timer">10</p>

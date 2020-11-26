@@ -1,26 +1,33 @@
 const resolve = require('path').resolve;
 
 const userRoutes = require('./routes/user/users');
-const scoreRoute = require('./routes/score/scoreboard');
+//const scoreRoute = require('./routes/score/scoreboard');
 const homeRoute = require('./routes/home/home');
 const gameRoute = require('./routes/game/game');
 
-const morgan = require('morgan');
+//const morgan = require('morgan'); // logs incoming HTTP requests
 const bodyparser = require('body-parser');
 module.exports = (app) => {
 
-    app.use(morgan('dev'));
+    //app.use(morgan('dev'));   // logs incoming HTTP requests
     app.use(bodyparser.urlencoded({ extended: false }));
     app.use(bodyparser.json());
 
     app.use('/users', userRoutes);
-    app.use('/score', scoreRoute);
+    //app.use('/score', scoreRoute);
     app.use('/home', homeRoute);
     app.use('/game', gameRoute);
 
+    app.get('/favicon.ico', (req, res, next) => {
+        res.sendFile(resolve('./App/public/images/player_placeholder.png'));
+    });
 
     app.get('/gameroom', (req, res, next) => {
         res.sendFile(resolve('./App/public/html/gamepage.html'));
+    });
+
+    app.get('/html/:id', (req, res, next) => {
+        res.sendFile(resolve(`./app/public/html/${req.params.id}`));
     });
 
     app.get("/images/:id", (req, res, next) => {

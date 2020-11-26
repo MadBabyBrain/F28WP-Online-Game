@@ -1,159 +1,69 @@
 # F28WP-Online-Game
-# Recent changes
-- Added a basic game start page under Test/nodeJs folder
+- Group Localhost:3000's Web programming (2020 - Year 2 Semester 1) coursework
 
 
-# REMOVE ALL README.md CONTENTS. WILL RE-ADD LATER
+# How to run
+Requirements
+- node.js
+- the git reposiorty
+- MongoDB - if you want to store the data locally
 
-# Summary of changes
-- Added example backend (`Node.js`)
-- API folder contains `express` (node package/module) to build a REST(ful) API
-- `Nodemon` to make restarting server/node console easier
-- Added test/sample data - _need to connect with `MongoDB`_
-- API folder contains `Joi` (node package/module) for HTML request validation *NEW*
-- Added new routes for front-end *NEW*
-- Website has interface to interact with data on the server *NEW*
-- `Express` now handles `CSS` and `JavaScript` files as _static_ files *NEW*
+Download the repository
+- Do this option only if wanting to store data locally and not on our database
+Create/edit the `.env` file in the folder
+In the `.env` add:
+`JWT_TOKEN="[YOUR SECRET]"
+DB_HOST="[MONGODB CONNECTION STRING]"`
 
-# API
-- `express`
-- `Joi` *NEW*
+where:
+-[YOUR SECRET] is a string, such as "f38nj-fk923" or "secret"
+-[MONGODB CONNECTION STRING] can be found if you installed MongoDB locally and looks something like this
+`mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false` or if you have an MongoDB atlas account
+then you can set up a database on the cloud and get a string that looks something like this
+`mongodb+srv://[name]:[password]@[name].jbitk.mongodb.net/[name]?retryWrites=true&w=majority`
 
-# How To Access/View "Server"
-- download and install `node.js`
-- open `node console`
-- change the directory to be within the folder that contains `index.js`
-- run `index.js` with command `node index.js`
+Run the .bat executable.
+This will start the server on `localhost` with the port `3000`
 
-# URLs:
-- `localhost:3000` _UPDATED_
-  - Node sends the client the `Home.html` file  _UPDATED_
-  - displays `Hello World!` _REMOVED_
-- `localhost:3000/Game.html` _NEW_
-  - Node sends the client the `Game.html` file
-- `localhost:3000/CSS/:css` _NEW_
-  - _`:css`_ is a parameter of the css file
-  - `express` now handles this as a static file _NEW_
-  - this route is directs the browser to the required css files
-- `localhost:3000/JavaScript/:js` _NEW_
-  - _`:js`_ is a parameter of the javascript file
-  - `express` now handles this as a static file _NEW_
-  - this route directs the browser to the required javascript files
-- `localhost:3000/api/scores`
-- `localhost:3000/api/scores/:id`
-  - _`:id`_ is a parameter. The test object only contains 3 entries/elements. Only 0, 1 and 2 work
-  - example usage `localhost:3000/api/scores/0`
-- `localhost:3000/api/date/:day/:month/:year` - _REMOVED_
-  - only returns an object with the values from parameters
-  - example usage `localhost:3000/api/date/6/12/2030` will display an object with those values
-- `localhost:3000/api/date/:day/:month/:year?sortBy=name` - _REMOVED_
-  - query parameters have been commented out because of a conflict with other parameters
-  - you can still view this by going into the `index.js` file and commenting out the `res.send(req.params)` and removing the comments from `res.send(req.query)`
-    - you can enter anything after _`?`_ since no proper support has been implemented for this
-  - example usage: `localhost:3000/api/date/1/2/2030?<name>=<value>`
-  
-# HTML Requests *NEW*
-Added functionality to `PUT`, `POST` and `DELETE` HTML requests
-- `PUT`_manipulates_ the data
-- `POST` _adds_ new data
-- `DELETE` _deletes_ data
+The urls to access the game are
+`/home` - signup/login/play as guest
+`/game` - the game
 
-Implemented a UI to interact with the server from the website _NEW_
-- Only supports `GET` and `POST` _NEW_
 
-Some data validation is in place when handling the requests. Using `Joi` a schema has been implemented.
-Schema rules :
-Field |      Type     |  Min   |  Required   |
-------|---------------|--------|-------------|
-name  |  String       |    3   |    Yes      |
-score |  Number(Int)  |    0   |    Yes      |
+# How to play
+Requirements
+- 2 players or more
+- an internet connection
 
-To test the HTML request
-- download `Postman`, a chrome application, you _do not_ need to create an account
-- change to the type of HTML request to test by clicking on the dropdown menu where `GET` is
-  - only supports `GET`, `POST`, `PUT` and `DELETE`
-- enter the URL
-- enter the data in the `Body` if needed
+Controls
+Use the `W`, `A`, `S` and `D` keys to move your character around the lobby and game room
+To choose an option (`Rock`, `Paper` or `Scissors`) in the game room you must get your character within the circle
+note that it only selects the option once you are within the circle boundries and aren't moving
 
-example `GET` request
-- make sure the request is `GET`
-- enter URL `http://localhost:3000/api/scores`
-- `Send`
+Mechanics
+As stated previously, get your character on a circle, that is labeled, before the time runs out.
+The game stores the last chosen option as you final choice once the time ends.
+This means that if you change your mind and not make it in time, your last option will be selected.
+There is a 10 second calculating period between rounds.
 
-result:
-`[
-  {
-    "id": 0,
-    "name": "user1",
-    "score": 1
-   },
-    {
-        "id": 1,
-        "name": "user2",
-        "score": 2
-    },
-    {
-        "id": 2,
-        "name": "user3",
-        "score": 3
-    }
-]`
+If you win you will stay in the room and move onto the next round.
+If you lose, an alert will be displayed and you will be kicked out of the current game session/room
 
-example `POST` request
-- make sure the request is `POST`
-- enter URL `http://localhost:3000/api/scores`
-- go into `Body`
-- choose `raw`
-- change `Text` to `JSON(application/json)`
-- enter data to add using the schema above
-  - e.g.: `{
-    "name":"user4",
-    "score":3
-  }`
-- `Send`
+# Scoring points
+To score a point you have to win a tournament. This also requires you to have an account and be logged in
+The scoreboard _isn't_ ordered, and just displays a username and their score
 
-result:
-`{
-    "id": 4,
-    "name": "user4",
-    "score": 3
-}`
+# Known Issues
+- the game room will reach the end of the time and after 10 seconds will not do anything - to fix this either reload the server or refresh the page (progress will be lost)
+- the character will not appear in the game room, this includes not being able to move - to fix this either reload the server or refresh the page (progress will be lost)
+- a player sprite will not be rendered in the lobby - this usually isn't a game breaking bug, either refresh page or ignore it
+- malformed token issue - refresh the server, this is usually due to the token being undefined, make sure you are logged in before playing the game
+- server crash if someone leaves during the game - refresh server
+- ghost character/duplicats - usually ins't a game breaking bug, but you can refresh the server and make sure to disconnect and reconnect everyone on the server
 
-example `PUT` request
-- make sure the request is `PUT`
-- enter URL `http://localhost:3000/api/scores/:id`
-  - _`:id`_ is the parameter corresponding to the object `"id"`
-  - e.g.: `http://localhost:3000/api/scores/0`
-- go into `Body`
-- choose `raw`
-- change `Text` to `JSON(application/json)`
-- enter data to change using the schema above
-  - e.g.: `{
-    "name":"user1",
-    "score":10
-  }`
-- `Send`
-
-result:
-`{
-    "id": 0,
-    "name": "user1",
-    "score": 20
-}`
-_You can see the data changed by openining a new tab and requesting `GET`_
-
-example `DELETE` request
-- make sure the request is `DELETE`
-- enter URL `http://localhost:3000/api/scores/:id`
-  - _`:id`_ is the parameter corresponding to the object `"id"`
-  - in this case _`:id`_ is the entery to be _deleted_
-  - e.g.: `http://localhost:3000/api/scores/0`
-- `Send`
-
-result:
-_You can see the data deleted by openining a new tab and requesting `GET`_
-
-# How to stop "server"
-In the node console press `CTRL+C` twice to stop the server from running
-
-_NOTE_: this is _not_ the finalised build. Future updates will _remove_ test data in replace of handling `MongoDB` data. URLs will most likely change as well.
+# contancts/owners/creaters/contributors
+db105@hw.ac.uk - DBartmann7
+dc111@hw.ac.uk - MadBabyBrain
+jmd9@hw.ac.uk - Jakubyte
+nh65@hw.ac.uk - NevinHarmjanz1
+rs239@hw.ac.uk - Sailfin103

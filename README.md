@@ -1,6 +1,14 @@
 # F28WP-Online-Game
 - Group Localhost:3000's Web programming (2020 - Year 2 Semester 1) coursework
 
+npm install bcrypt
+npm install body-parser
+npm install dotenv
+npm install express
+npm install jsonwebtoken
+npm install mongoose
+npm install morgan
+npm install socket.io
 
 # How to run
 Requirements

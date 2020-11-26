@@ -19,55 +19,55 @@ module.exports = (app) => {
     app.use('/game', gameRoute);
 
     app.get('/', (req, res, next) => {
-        res.sendFile(resolve('./public/html/index.html'));
+        res.sendFile(resolve('./App/public/html/index.html'));
     })
 
     app.get('/favicon.ico', (req, res, next) => {
-        res.sendFile(resolve('./public/images/player_placeholder.png'));
+        res.sendFile(resolve('./App/public/images/player_placeholder.png'));
     });
 
     app.get('/gameroom', (req, res, next) => {
-        res.sendFile(resolve('./public/html/gamepage.html'));
+        res.sendFile(resolve('./App/public/html/gamepage.html'));
     });
 
     app.get('/html/:id', (req, res, next) => {
-        res.sendFile(resolve(`./public/html/${req.params.id}`));
+        res.sendFile(resolve(`./App/public/html/${req.params.id}`));
     });
 
     app.get('/html/lobbyroom.html', (req, res, next) => {
-        res.sendFile(resolve('./public/html/lobbyroom/html'));
+        res.sendFile(resolve('./App/public/html/lobbyroom/html'));
     });
 
     app.get("/images/:id", (req, res, next) => {
-        res.sendFile(resolve(`./public/images/${req.params.id}`))
+        res.sendFile(resolve(`./App/public/images/${req.params.id}`))
     });
 
     app.get("/js/select_character.js", (req, res, next) => {
-        res.sendFile(resolve('./public/js/select_character.js'))
+        res.sendFile(resolve('./App/public/js/select_character.js'))
     });
 
     app.get('/css/:id', (req, res, next) => {
-        res.sendFile(resolve(`./public/css/${req.params.id}`));
+        res.sendFile(resolve(`./App/public/css/${req.params.id}`));
     });
 
     app.get('/js/:id', (req, res, next) => {
-        res.sendFile(resolve(`./public/js/${req.params.id}`));
+        res.sendFile(resolve(`./App/public/js/${req.params.id}`));
     });
 
     app.get('/images/Wood_Texture_Pack/:id', (req, res, next) => {
-        res.sendFile(resolve(`./public/images/Wood_Texture_Pack/${req.params.id}`))
+        res.sendFile(resolve(`./App/public/images/Wood_Texture_Pack/${req.params.id}`))
     });
 
     app.get('/socket.io.js', (req, res, next) => {
-        res.sendFile(resolve('./api/node_modules/socket.io/client-dist/socket.io.min.js'));
+        res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js'));
     });
 
     app.get('/socket.io.min.js.map', (req, res, next) => {
-        res.sendFile(resolve('./api/node_modules/socket.io/client-dist/socket.io.min.js.map'));
+        res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js.map'));
     });
 
     app.get('/images/unidentified.png', (req, res, next) => {
-        res.sendFile(resolve('./public/images/player_placeholder.png'));
+        res.sendFile(resolve('./App/public/images/player_placeholder.png'));
     });
 
     // app.get('/users/signup', (req, res, next) => {

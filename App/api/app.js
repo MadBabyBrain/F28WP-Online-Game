@@ -39,7 +39,7 @@ module.exports = (app) => {
     });
 
     app.get("/images/:id", (req, res, next) => {
-        res.sendFile(resolve(`./public/images/${req.params.id}`))
+        res.sendFile(resolve(`../public/images/${req.params.id}`))
     });
 
     app.get("/js/select_character.js", (req, res, next) => {

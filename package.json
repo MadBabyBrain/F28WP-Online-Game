@@ -2,10 +2,10 @@
   "name": "online-game",
   "version": "1.0.0",
   "description": "A Node.js RESTful API online game project",
-  "main": "App/api/server.js",
+  "main": "./App/api/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node ./App/api/server.js"
   },
   "repository": {
     "type": "git",

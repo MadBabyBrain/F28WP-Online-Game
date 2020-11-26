@@ -61,7 +61,7 @@ The scoreboard _isn't_ ordered, and just displays a username and their score
 - server crash if someone leaves during the game - refresh server
 - ghost character/duplicats - usually ins't a game breaking bug, but you can refresh the server and make sure to disconnect and reconnect everyone on the server
 
-# contancts/owners/creaters/contributors
+# Contacts/owners/creaters/contributors
 - db105@hw.ac.uk - DBartmann7
 - dc111@hw.ac.uk - MadBabyBrain
 - jmd9@hw.ac.uk - Jakubyte

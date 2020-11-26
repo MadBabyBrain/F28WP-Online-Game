@@ -1,5 +1,5 @@
 const characters = [];
-characters.push('character_facing_down');
+characters.push('Character_facing_down');
 characters.push('Holy_man');
 characters.push('karate_man');
 characters.push('Nevin_Icon');

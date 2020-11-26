@@ -63,7 +63,7 @@ module.exports = (app) => {
     });
 
     app.get('/socket.io.min.js.map', (req, res, next) => {
-        res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js.map'));
+        res.sendFile(resolve('./node_modules/socket.io/client-dist/socket.io.min.js.map'));
     });
 
     app.get('/images/unidentified.png', (req, res, next) => {

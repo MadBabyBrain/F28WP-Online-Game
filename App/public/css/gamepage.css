@@ -2,12 +2,18 @@
     height: 200px;
     width: 200px;
     text-align: center;
-
 }
 
 #game-text{
-    top:100px;
-    left:100px;
-
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.4rem;
+    /* color: var(--inv); */
+    color: #348362;
+	letter-spacing: 0.5rem;
+	text-transform: uppercase;
+    padding: 1rem 2rem;
+    text-align: center;
 }
 

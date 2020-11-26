@@ -58,6 +58,10 @@ module.exports = (app) => {
         res.sendFile(resolve('./App/api/node_modules/socket.io/client-dist/socket.io.min.js.map'));
     });
 
+    app.get('/images/unidentified.png', (req, res, next) => {
+        res.sendFile(resolve('./App/public/images/player_placeholder.png'));
+    });
+
     // app.get('/users/signup', (req, res, next) => {
     //     res.sendFile(resolve('./App/public/html/signup.html'));
     // });

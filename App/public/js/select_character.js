@@ -1,8 +1,10 @@
 const characters = [];
 characters.push('character_facing_down');
-characters.push('character_facing_left');
-characters.push('character_facing_up');
-characters.push('character_facing_right');
+characters.push('Holy_man');
+characters.push('karate_man');
+characters.push('Nevin_Icon');
+characters.push('Sprite-0002');
+characters.push('alien');
 
 let index = 0;
 function previous() {
@@ -30,6 +32,7 @@ function next() {
 }
 
 function createPlayer() {
+    console.log(characters[index])
     const player = document.createElement('IMG');
     player.setAttribute("class", "player");
     player.setAttribute("id", socket.id);

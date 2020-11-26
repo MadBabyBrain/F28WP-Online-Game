@@ -13,7 +13,12 @@ function signup() {
     xhttp.onreadystatechange = function () {
         if (this.readState == 4 && this.status == 200) {
             console.log("Sent a signup request");
-            console.log(this.responseText);
+        } else if (this.status == 500) {
+            document.getElementById("taken").style.display = "block";
+            document.getElementById("taken").textContent = "username taken";
+        } else if (this.status == 409) {
+            document.getElementById("taken").style.display = "block";
+            document.getElementById("taken").textContent = "email exists";
         }
     };
 
@@ -22,10 +27,11 @@ function signup() {
     xhttp.send(JSON.stringify(user));
 
     xhttp.onreadystatechange();
+
 }
 
 async function getToken(email, password) {
-    const response = await fetch("http://localhost:3000/users/login", {
+    const res = await fetch("http://localhost:3000/users/login", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -42,7 +48,7 @@ async function getToken(email, password) {
         }) // body data type must match "Content-Type" header
     });
 
-    return await response.json();
+    return await res.json();
 }
 
 async function login() {
@@ -51,13 +57,23 @@ async function login() {
 
     getToken(email, password)
         .then(token => {
-            localStorage.setItem('token', token.token);
-            localStorage.setItem('username', token.username);
-            gotoGame();
+            if (token.message == "Auth successful") {
+                localStorage.setItem('token', token.token);
+                localStorage.setItem('username', token.username);
+                gotoGame();
+            } else {
+                throw new Error(token.message);
+            }
+        }).catch(e => {
+            console.log(e);
+            document.getElementById("invalid").style.display = "block";
         });
 }
 
-
+function guest() {
+    localStorage.setItem('token', 'guest');
+    gotoGame();
+}
 
 function gotoGame() {
 

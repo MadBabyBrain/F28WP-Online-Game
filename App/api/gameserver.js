@@ -20,7 +20,7 @@ let rooms = {
 
 // sets min and max players for rooms
 const min_player = 2;
-const max_player = 4;
+const max_player = 64;
 // sets total rooms to 1 to begin with, increments as more rooms are created
 let current_available_room = 1;
 
@@ -140,17 +140,33 @@ module.exports = (io) => {
         // calls once game room timer hits 0
         socket.on('choice', data => {
             // console.log(data);
+            console.log(data.choice)
             console.log(data.player.room)
             if (data.player.id !== null) {
-                rooms[data.player.room].choices.push(data.choice);
-                rooms[data.player.room].ids.push(data.player.id);
+                if (data.choice !== 0) {
+                    rooms[data.player.room].choices.push(data.choice);
+                    rooms[data.player.room].ids.push(data.player.id);
+                }
+                else {
+                    rooms[data.player.room].choices.push(0)
+                    io.to(data.player.id).emit('player_disconnect');
+                }
             }
+            console.log("Choices: " + rooms[data.player.room].choices.length)
+            console.log("Choices: " + rooms[data.player.room].choices);
+            console.log("Players: " + rooms[data.player.room].num_players)
+            console.log("Choices length = number of players: " + rooms[data.player.room].choices.length == rooms[data.player.room].num_players);
             // console.log(rooms[data.player.room]);
-            if (rooms[data.player.room].choices.length === rooms[data.player.room].num_players) {
+            // rooms[data.player.room].choices.length === rooms[data.player.room].num_players
+            if (rooms[data.player.room].choices.length == rooms[data.player.room].num_players) {
                 // console.log(rooms[data.player.room].choices);
                 // console.log(rooms[data.player.room].ids);
                 calculate_Winner(data.player.room);
             }
+            // else {
+            //     rooms[data.player.room].locked = false;
+            //     io.to(rooms[data.player.room].ids[data.player.id]).emit('win');
+            // }
 
         });
 
@@ -164,8 +180,8 @@ module.exports = (io) => {
 
             console.log(rooms[roomid].num_players);
 
-            if (rooms[roomid].num_players == 1) {
-                console.log("I'm inside the if statement");
+            if (rooms[roomid].num_players <= 1) {
+                // console.log("I'm inside the if statement");
                 rooms[roomid].locked = false;
                 io.to(rooms[roomid].ids[0]).emit('win');
             } else {
@@ -184,15 +200,15 @@ module.exports = (io) => {
                     console.log("first: " + first_choice + " " + "second: " + second_choice);
                     console.log("first: " + first_id + " " + "second: " + second_id);
 
-                    if (first_choice === undefined) {
+                    if (first_choice === 0) {
                         console.log('second wins');
                         rooms[roomid].ids.splice(i, 1);
-                        io.to(first_id).emit('player_disconnect')
+                        // io.to(first_id).emit('player_disconnect')
                         continue;
-                    } else if (second_choice === undefined) {
+                    } else if (second_choice === 0) {
                         console.log('first wins');
                         rooms[roomid].ids.splice(i + 1, 1);
-                        io.to(second_id).emit('player_disconnect')
+                        // io.to(second_id).emit('player_disconnect')
                         continue;
                     }
 
@@ -255,18 +271,22 @@ module.exports = (io) => {
                     //     io.to(second_id).emit('player_disconnect')
                     // }
                 }
-            }
-            rooms[roomid].ids = [];
-            rooms[roomid].choices = [];
 
-            if (rooms[roomid].num_players > 1) {
-                setTimeout(() => { io.in(roomid).emit('new_round', rooms[roomid].gameState); }, 10000);
+                if (rooms[roomid].num_players > 1) {
+                    rooms[roomid].ids = [];
+                    rooms[roomid].choices = [];
+                    setTimeout(() => { io.in(roomid).emit('new_round', rooms[roomid].gameState); }, 10000);
+                }
+                else {
+                    // rooms[roomid].locked = false;
+                    io.to(rooms[roomid].ids[0]).emit('win');
+                    // update score and show winning message
+                }
+
             }
-            // else {
-            //     // rooms[roomid].locked = false;
-            //     // io.to(rooms[roomid].ids[0]).emit('win');
-            //     // update score and show winning message
-            // }
+
+
+
         }
 
         socket.on('increase_point', token => {

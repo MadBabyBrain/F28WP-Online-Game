@@ -28,6 +28,7 @@
                     <label for="password">Password:</label>
                     <input type="password" id="s-password" name="password">
                     <button onclick="signup()">sign up</button>
+                    <p id="taken" style="display: none; color: red;"> username taken </p>
                 </div>
             </div>
 
@@ -41,10 +42,11 @@
                     <label for="password">Password:</label>
                     <input type="password" id="l-password" name="password">
                     <button onclick="login()">login</button>
+                    <p id="invalid" style="display: none; color: red;"> incorrect credentials </p>
                 </div>
             </div>
 
-            <button class="guest-button" onclick="gotoGame()">Play as guest</button>
+            <button class="guest-button" onclick="guest()">Play as guest</button>
 
             <table id="scoreboard">
                 <h3 id="scorename">Scoreboard</h3>

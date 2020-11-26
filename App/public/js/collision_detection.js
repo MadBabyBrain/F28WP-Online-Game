@@ -24,6 +24,7 @@ function timer(time, p, socket) {
 
 
 function setobj() {
+    // this_player = player;
     const rock = document.getElementById("rock");
     const paper = document.getElementById("paper");
     const scissors = document.getElementById("scissors");

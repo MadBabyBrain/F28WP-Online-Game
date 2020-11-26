@@ -51,8 +51,12 @@ socket.on('player_disconnect', () => {
 socket.on('win', () => {
   alert("You have won the tournament");
 
-  // mutliple checks to see if the browser has a token stored locally
-  if (localStorage.getItem('token') && localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null) {
+  // if malformed token, delete token - user will have to log back in
+  if (localStorage.getItem('token') === undefined || localStorage.getItem('token') === null || localStorage.getItem('token') === 'undefined') {
+    localStorage.removeItem('token');
+    alert("Please log back in, malformed token");
+  } // mutliple checks to see if the browser has a token stored locally
+  else if (localStorage.getItem('token') && localStorage.getItem('token') !== 'guest') {
     socket.emit('increase_point', localStorage.getItem('token'));
   }
 

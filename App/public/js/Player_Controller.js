@@ -21,7 +21,7 @@ socket.on('start_game', (game) => {
   unloadPlayers(game);
   document.getElementById('lobby-main').remove();
 
-  fetch('http://localhost:3000/gameroom').then(res => {
+  fetch('https://f28ed-2020-localhost.herokuapp.com/gameroom').then(res => {
     // console.log("html found");
     res.text().then(data => {
       // console.log(data);

@@ -1,5 +1,5 @@
 async function getScores() {
-    const response = await fetch("http://localhost:3000/users/score", {
+    const response = await fetch("https://f28ed-2020-localhost.herokuapp.com/users/score", {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached

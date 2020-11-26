@@ -12,7 +12,7 @@ const iosocket = require('./gameserver');
 const port = process.env.PORT || 3000;
 
 mongoose.connect(
-    process.env.DB_HOST,
+    "mongodb+srv://f28wp-2020-localhost:zwmPRsiZiLCnrZzp@f28wp-2020-localhost.jbitk.mongodb.net/online-game?retryWrites=true&w=majority",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true

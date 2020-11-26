@@ -18,6 +18,10 @@ module.exports = (app) => {
     app.use('/home', homeRoute);
     app.use('/game', gameRoute);
 
+    app.get('/', (req, res, next) => {
+        res.sendFile(resolve('./app/public/html/index.html'));
+    })
+
     app.get('/favicon.ico', (req, res, next) => {
         res.sendFile(resolve('./App/public/images/player_placeholder.png'));
     });

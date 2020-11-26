@@ -77,6 +77,6 @@ function guest() {
 
 function gotoGame() {
 
-    window.location.href = '../html/lobbyroom.html';
+    window.location.href = './html/lobbyroom.html';
 
 }
